@@ -5,14 +5,14 @@ namespace Nishkriya.Controllers
 {
     public class ThreadsController : Controller
     {
-        private ThreadDbContext db = new ThreadDbContext();
+        
 
         //
         // GET: /Threads/
 
         public ActionResult Index()
         {
-            return View(db.Threads);
+            return View();
         }
 
 
@@ -22,7 +22,7 @@ namespace Nishkriya.Controllers
         public ActionResult Details(int id)
         {
             ViewBag.id = id;
-            return View(db.Threads);
+            return View();
         }
     }
 }
