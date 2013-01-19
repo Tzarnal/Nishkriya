@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Nishkriya.Scraper;
 
 namespace Nishkriya
 {
@@ -22,6 +24,14 @@ namespace Nishkriya
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            SetupScraper();
+        }
+
+        private void SetupScraper()
+        {
+            var interval = 2*60*1000;
+            var timer = new Timer(x => new ScavengerLord().Scrape(), null, 60,interval);
         }
     }
 }
