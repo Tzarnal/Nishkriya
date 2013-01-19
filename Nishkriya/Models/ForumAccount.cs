@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace Nishkriya.Models
 {
@@ -6,10 +7,9 @@ namespace Nishkriya.Models
     {
 
         public int Id { get; set; }
-        public int ForumId { get; set; }
         public string Name { get; set; }
-        public bool Active { get; set; }
-
+        public int ForumId { get; set; }
+        public ICollection<Post> Posts { get; set; }
     }
 
     public class ForumAccountDbContext : DbContext

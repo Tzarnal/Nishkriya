@@ -7,9 +7,9 @@ namespace Nishkriya.Models
     {
         public int Id { get; set; }
         public string Content { get; set; }
-        public int FoumAccount { get; set; }
         public int ThreadId { get; set; }
         public string ThreadName { get; set; }
+        public string Hash { get; set; }
     }
 
     public class PostDbContext : DbContext
