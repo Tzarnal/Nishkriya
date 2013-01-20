@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Threading;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Nishkriya.Properties;
+using Nishkriya.Scraper;
 
 namespace Nishkriya
 {
@@ -14,6 +13,8 @@ namespace Nishkriya
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private Timer _scrapeTimer;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -22,6 +23,14 @@ namespace Nishkriya
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            SetupScraper();
+        }
+
+        private void SetupScraper()
+        {
+            var interval = Settings.Default.ScrapeInterval*60*1000;
+            _scrapeTimer = new Timer(x => new ScavengerLord(new Sha1Provider()).Scrape(), null, 60, interval);
         }
     }
 }
