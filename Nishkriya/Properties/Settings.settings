@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Nishkriya.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ProfileUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://forums.white-wolf.com/default.aspx?g=profile&amp;u={0}</Value>
+    </Setting>
+    <Setting Name="AuthToken" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
