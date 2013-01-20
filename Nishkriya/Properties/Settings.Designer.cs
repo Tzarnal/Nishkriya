@@ -40,5 +40,14 @@ namespace Nishkriya.Properties {
                 return ((string)(this["AuthToken"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int ScrapeInterval {
+            get {
+                return ((int)(this["ScrapeInterval"]));
+            }
+        }
     }
 }
