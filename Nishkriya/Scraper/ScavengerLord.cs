@@ -86,7 +86,7 @@ namespace Nishkriya.Scraper
             {
                 using (var db = new NishkriyaContext())
                 {
-                    db.Errors.Add(new Error {Exception = ex, OccurredOn = DateTime.Now});
+                    db.Errors.Add(new Error {StackTrace = ex.StackTrace, OccurredOn = DateTime.Now});
                 }
                 return new Post[0];
             }

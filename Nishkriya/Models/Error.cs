@@ -10,6 +10,6 @@ namespace Nishkriya.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime OccurredOn { get; set; }
-        public Exception Exception { get; set; }
+        public string StackTrace { get; set; }
     }
 }

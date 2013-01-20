@@ -10,6 +10,7 @@ namespace Nishkriya.Models
         public int Id { get; set; }
         public string Content { get; set; }
         public string Hash { get; set; }
+        [ForeignKey("ForumAccount")]
         public int ForumAccountId { get; set; }
         public virtual ForumAccount ForumAccount { get; set; }
 
