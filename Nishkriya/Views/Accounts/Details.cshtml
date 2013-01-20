@@ -1,7 +1,22 @@
-﻿@model IEnumerable <Nishkriya.Models.ForumAccount>
+﻿@model Nishkriya.Models.ForumAccount
 
 @{
-    ViewBag.Title = "Account - Details";
+    ViewBag.Title = "Details";
 }
 
-<h2>Account Details - @ViewBag.id</h2>
+<h2>Details</h2>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div>
+    @foreach (var post in Model.Posts)
+    {
+        <div class="developer-quote">
+            <h3>@post.ForumAccount.Name said</h3>
+            @Html.Raw(post.Content)
+        </div>
+    }
+</div>

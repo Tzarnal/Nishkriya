@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Nishkriya.Models;
 using Nishkriya.Properties;
@@ -37,7 +36,7 @@ namespace Nishkriya.Scraper
         {
             using (var db = new NishkriyaContext())
             {
-                Parallel.ForEach(db.Accounts, account => account.Posts.AddRange(GetNewPosts(account)));
+                db.Accounts.ToList().ForEach(account => account.Posts.AddRange(GetNewPosts(account)));
                 db.SaveChanges();
             }
         }

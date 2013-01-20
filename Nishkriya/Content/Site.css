@@ -59,3 +59,34 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
+
+.quote {
+        margin: 10px;
+    padding: 10px;
+    background-color: gainsboro;
+}
+
+
+.quote {
+    margin: 10px;
+    padding: 10px;
+    border: 1px dashed #3F3F3F;
+    background-color: gainsboro;
+}
+
+.yafsignature {
+    display: none;
+}
+
+.developer-quote {
+    margin: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3f3f3f
+}
+
+.developer-container {
+    border-right: 1px solid #3f3f3f;
+    margin-left: 10px;
+    width: 32%;
+    float: left;
+}

@@ -10,7 +10,7 @@ using Nishkriya.Models;
 
 namespace Nishkriya.Controllers
 {
-    public class ForumAccountsController : Controller
+    public class AccountsController : Controller
     {
         private readonly NishkriyaContext db = new NishkriyaContext();
 

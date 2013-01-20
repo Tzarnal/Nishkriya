@@ -49,5 +49,14 @@ namespace Nishkriya.Properties {
                 return ((int)(this["ScrapeInterval"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("scarlet-empress")]
+        public string SecretAnswer {
+            get {
+                return ((string)(this["SecretAnswer"]));
+            }
+        }
     }
 }
