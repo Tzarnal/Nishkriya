@@ -142,6 +142,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Scraper\Sha1Provider.cs" />
+    <Compile Include="Scraper\IHashProvider.cs" />
     <Compile Include="Scraper\ScavengerLord.cs" />
   </ItemGroup>
   <ItemGroup>
