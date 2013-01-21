@@ -13,7 +13,8 @@ namespace Nishkriya.Models
         public string Hash { get; set; }
         [ForeignKey("ForumAccount")]
         public int ForumAccountId { get; set; }
-
+        public int ThreadId { get; set; }
+        public string PostTitle { get; set; }
         public DateTime PostDate { get; set; }
         public virtual ForumAccount ForumAccount { get; set; }
 
