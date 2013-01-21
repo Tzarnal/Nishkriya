@@ -6,17 +6,13 @@
 
 <div>
     <h2>Most Recent Posts</h2>
-    @{ var authors = ViewBag.accounts as List<Nishkriya.Models.ForumAccount>;}
-    @foreach (var account in authors)
+    @foreach (var post in ViewBag.posts)
     {   
         <div class="developer-container">
-            <h3>@account.Name</h3>
-            @foreach (var post in account.Posts.OrderByDescending(p => p.Id).Take(10))
-            {
-                <div class="developer-quote">
-                    @Html.Raw(post.Content)
-                </div>
-            }
+            <h3>@post.ForumAccount.Name</h3>
+            <div class="developer-quote">
+                @Html.Raw(post.Content)
+            </div>
         </div>
     }
 </div>

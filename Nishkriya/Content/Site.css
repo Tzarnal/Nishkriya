@@ -80,13 +80,11 @@ textarea {
 
 .developer-quote {
     margin: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #3f3f3f
+    padding-bottom: 15px;
+    /*border-bottom: 1px solid #3f3f3f*/
 }
 
-.developer-container {
-    border-right: 1px solid #3f3f3f;
+.developer-container {    
     margin-left: 10px;
-    width: 32%;
-    float: left;
+    width:65%;    
 }
