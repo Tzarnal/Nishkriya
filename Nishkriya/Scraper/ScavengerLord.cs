@@ -21,26 +21,12 @@ namespace Nishkriya.Scraper
             _hashProvider = hashProvider;
         }
 
-        static readonly List<String> PostIds = new List<string>
-            {
-                "MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_0",
-                "MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_1",
-                "MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_2",
-                "MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_3",
-                "MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_4",
-                "MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_5",
-                "MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_6",
-                "MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_7",
-                "MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_8",
-                "MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_9"
-            };
-
         public void Scrape()
         {
             using (var db = new NishkriyaContext())
             {
                 db.Accounts.ToList().ForEach(account => account.Posts.AddRange(GetNewPosts(account)));
-                //db.SaveChanges();
+                db.SaveChanges();
             }
         }
 
@@ -73,30 +59,43 @@ namespace Nishkriya.Scraper
                     }
                 }
 
+                var postsCollection = new List<Post>();
 
-
-                var threadHref =
+                for( var i = 0; i < 10; i++)
+                {
+                    var tableRow = 1 + (2*i);
+                    
+                    var threadHref =
                     document.DocumentNode.SelectSingleNode(
-                        "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[1]//td/a/@href").Attributes[0].Value;
-                var threadId = int.Parse( Regex.Match(threadHref, @"(\d+)$").Groups[0].Value );
+                        "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr["+ tableRow +"]//td/a/@href").Attributes[0].Value;
+                    var threadId = int.Parse(Regex.Match(threadHref, @"(\d+)$").Groups[0].Value);
 
-                var threadTitle =
-                    document.DocumentNode.SelectSingleNode(
-                        "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[1]//td/a/text()").InnerHtml.Trim();
+                    var threadTitle =
+                        document.DocumentNode.SelectSingleNode(
+                            "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[" + tableRow + "]//td/a/text()").InnerHtml.Trim();
 
-                var postDate = DateTime.Parse( 
-                    document.DocumentNode.SelectSingleNode(
-                        "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[1]//td/text()[4]").InnerHtml.Trim());
+                    var postDate = DateTime.Parse(
+                        document.DocumentNode.SelectSingleNode(
+                            "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[" + tableRow + "]//td/text()[4]").InnerHtml.Trim());
 
-                
-                var postContent =
-                    document.DocumentNode.SelectSingleNode(
-                        "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_" + 1 + "')" ).InnerHtml;
+                    var postContent =
+                        document.DocumentNode.SelectSingleNode(
+                            "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_" + i + "')").InnerHtml;
+
+                    postsCollection.Add(new Post
+                                            {
+                                                Content = postContent,
+                                                Hash = _hashProvider.Compute(postContent),
+                                                ThreadId = threadId,
+                                                PostDate = postDate,
+                                                PostTitle = threadTitle,
+                                            });
+                }
 
 
 
 
-                return null;
+                return postsCollection.Where(newPost => !account.Posts.Select(p => p.Hash).Contains(newPost.Hash));
             }
             catch (Exception ex)
             {

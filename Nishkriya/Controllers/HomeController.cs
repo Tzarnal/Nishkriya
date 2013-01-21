@@ -9,9 +9,8 @@ namespace Nishkriya.Controllers
         NishkriyaContext db = new NishkriyaContext();
 
         public ActionResult Index()
-        {
-            ViewBag.accounts = db.Accounts.ToList();
-            ViewBag.posts = db.Posts.OrderByDescending(p => p.Id).Take(10);
+        {            
+            ViewBag.posts = db.Posts.OrderByDescending(p => p.PostDate).Take(10);
             
             return View();
         }
