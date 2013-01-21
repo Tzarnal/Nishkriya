@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nishkriya.Models
@@ -12,6 +13,8 @@ namespace Nishkriya.Models
         public string Hash { get; set; }
         [ForeignKey("ForumAccount")]
         public int ForumAccountId { get; set; }
+
+        public DateTime PostDate { get; set; }
         public virtual ForumAccount ForumAccount { get; set; }
 
         public override bool Equals(object obj)
