@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
-using System.Xml;
 using HtmlAgilityPack;
 using Nishkriya.Models;
 using Nishkriya.Properties;
@@ -91,8 +90,6 @@ namespace Nishkriya.Scraper
                         PostTitle = threadTitle,
                     });
                 }
-
-
 
                 return postsCollection.Where(newPost => !account.Posts.Select(p => p.Hash).Contains(newPost.Hash));
             }
