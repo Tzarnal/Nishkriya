@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Nishkriya.Models;
 using Nishkriya.Models.ViewModels;
+using Nishkriya.Properties;
 using Nishkriya.Security;
 
 namespace Nishkriya.Controllers
@@ -45,9 +46,20 @@ namespace Nishkriya.Controllers
         [HttpPost]
         public ActionResult Create(NewUserViewModel newUser)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && newUser.Secret == Settings.Default.SecretAnswer)
             {
-                return View();
+                var user = new User
+                    {
+                        Username = newUser.Username,
+                        Password = BCrypt.HashPassword(newUser.Password, BCrypt.GenerateSalt()),
+                        Email = newUser.Email,
+                        IsAdmin = true,
+                        CreatedAt = DateTime.Now
+                    };
+
+                db.Users.Add(user);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
