@@ -1,0 +1,30 @@
+﻿@model IList<Nishkriya.Models.ForumAccount>
+@{Layout = null;}
+   
+        <!--The sidebar -->
+            <div class="span2">
+              <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                  <li class="nav-header">Home</li>
+                  <li class="@(ViewBag.selectedSidebarEntry == "Latest Topics" ? "active":"")"><a href="#">Latest Topics</a></li>
+                  <li class="@(ViewBag.selectedSidebarEntry == "Latest Posts" ? "active":"")"><a href="#">Latest Posts</a></li>                  
+                  <li class="@(ViewBag.selectedSidebarEntry == "About" ? "active":"")"><a href="#">About</a></li>
+                  <li class="@(ViewBag.selectedSidebarEntry == "Contact" ? "active":"")"><a href="#">Contact</a></li>
+                  
+                  <li class="nav-header">View</li>
+                  <li class="@(ViewBag.selectedSidebarEntry == "All Threads" ? "active":"")"><a href="#">All Threads</a></li>
+                  <li class="@(ViewBag.selectedSidebarEntry == "All Posts" ? "active":"")"><a href="#">All Posts</a></li>
+                  <li class="@(ViewBag.selectedSidebarEntry == ">Posters" ? "active":"")"><a href="#">Posters</a></li>
+
+                  
+                  <li class="nav-header">Posters</li>  
+                  @foreach(var account in Model)
+                  {
+                      <li class="@(ViewBag.selectedSidebarEntry == @account.Name ? "active":"")"><a href="#">@account.Name</a></li>   
+                  }
+
+
+                </ul>
+              </div><!--/.well -->
+            </div><!--/span-->
+

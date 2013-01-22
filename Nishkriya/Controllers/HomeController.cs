@@ -11,8 +11,14 @@ namespace Nishkriya.Controllers
         public ActionResult Index()
         {            
             ViewBag.posts = db.Posts.OrderByDescending(p => p.PostDate).Take(10);
-            
+            ViewBag.selectedSidebarEntry = "Latest Posts"; 
+
             return View();
+        }
+
+        public ActionResult _Sidebar()
+        {
+            return View(db.Accounts.ToList());
         }
 
     }
