@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Nishkriya.Models;
 
@@ -67,6 +62,7 @@ namespace Nishkriya.Controllers
         {
             if (ModelState.IsValid)
             {
+                forumaccount.Active = true;
                 db.Accounts.Add(forumaccount);
                 db.SaveChanges();
                 return RedirectToAction("Index");
