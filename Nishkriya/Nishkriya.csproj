@@ -200,6 +200,7 @@
     <Content Include="Views\Accounts\Delete.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\_Post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
