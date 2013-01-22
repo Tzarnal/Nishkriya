@@ -4,13 +4,38 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Nishkriya - @ViewBag.Title</title>
+    
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" media="screen">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @RenderBody()
+    <div class="container-fluid">
+          
+          <div class="row-fluid">
+            
+              @Html.Partial("_Sidebar")
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+              <!-- Main Page Element -->
+            <div class="span7">
+    
+                @RenderBody()
+    
+            </div><!--/span-->
+          
+          </div><!--/row-->
+
+          <hr>
+
+          <footer>
+            <p><a href="https://twitter.com/MoonWolfCrn">@@MoonWolfCrn</a> <a href="https://twitter.com/ProNihilist">@@ProNihilist</a> <br>
+            &copy; 2013</p>
+          </footer>
+
+        </div> 
+
+        <script src="/Scripts/bootstrap.min.js"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
 </body>
 </html>
