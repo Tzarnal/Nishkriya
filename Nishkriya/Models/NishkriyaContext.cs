@@ -8,5 +8,6 @@ namespace Nishkriya.Models
         public DbSet<Post> Posts { get; set; }
         public DbSet<Error> Errors { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Thread> Threads { get; set; }
     }
 }
