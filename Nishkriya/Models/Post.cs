@@ -11,13 +11,10 @@ namespace Nishkriya.Models
         public int Id { get; set; }
         public string Content { get; set; }
         public string Hash { get; set; }
-        [ForeignKey("ForumAccount")]
-        public int ForumAccountId { get; set; }
-        public int ThreadId { get; set; }
-        public string PostTitle { get; set; }
-        public DateTime PostDate { get; set; }
         public virtual ForumAccount ForumAccount { get; set; }
-
+        public virtual Thread Thread { get; set; }
+        public DateTime PostDate { get; set; }
+        
         public override bool Equals(object obj)
         {
             return (obj is Post) && (obj as Post).Hash.Equals(Hash);
