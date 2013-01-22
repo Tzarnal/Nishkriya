@@ -9,7 +9,7 @@
     @foreach (var post in ViewBag.posts)
     {   
         <div class="developer-container">
-            <h3><a href="http://forums.white-wolf.com/default.aspx?g=posts&t=@post.ThreadId" target="_blank">@post.PostTitle</a></h3>
+            <h3><a href="@post.Thread.GetUrl().ToString()" target="_blank">@post.Thread.Title</a></h3>
             <h5>@post.ForumAccount.Name - @post.PostDate.ToString()</h5>
             <div class="developer-quote">
                 @Html.Raw(post.Content)
