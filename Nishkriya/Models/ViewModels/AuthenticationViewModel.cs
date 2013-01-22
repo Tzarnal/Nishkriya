@@ -2,11 +2,15 @@
 
 namespace Nishkriya.Models
 {
-    public class UserViewModel
+    public class AuthenticationViewModel
     {
-        [StringLength(100, MinimumLength = 4)]
+        [Required]
+        [StringLength(20, MinimumLength = 4)]
         public string Username { get; set; }
+
+        [Required]
         [DataType(DataType.Password)]
+        [StringLength(100, MinimumLength = 10)]
         public string Password { get; set; }
     }
 }

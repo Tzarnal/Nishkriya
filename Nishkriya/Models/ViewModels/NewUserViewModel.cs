@@ -1,15 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
-namespace Nishkriya.Models
+namespace Nishkriya.Models.ViewModels
 {
-    public class User
+    public class NewUserViewModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
         [StringLength(20, MinimumLength = 4)]
         public string Username { get; set; }
 
@@ -19,8 +17,5 @@ namespace Nishkriya.Models
 
         [EmailAddress]
         public string Email { get; set; }
-
-        [DataType(DataType.DateTime)]
-        public DateTime CreatedAt { get; set; }
     }
 }
