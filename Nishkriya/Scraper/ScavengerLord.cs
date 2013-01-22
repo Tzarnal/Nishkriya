@@ -59,25 +59,39 @@ namespace Nishkriya.Scraper
                     }
                 }
 
-                var postsCollection = (from i in Enumerable.Range(1, 10)
-                                       let tableRow = 1 + (2*i)
-                                       
-                                       let threadHref = document.DocumentNode.SelectSingleNode("id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[" + tableRow + "]//td/a/@href").Attributes[0].Value
-                                       let threadId = int.Parse(Regex.Match(threadHref, @"(\d+)$").Groups[0].Value)
-                                       
-                                       let threadTitle = document.DocumentNode.SelectSingleNode("id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[" + tableRow + "]//td/a/text()").InnerHtml.Trim()
-                                       
-                                       let postDate = DateTime.Parse(document.DocumentNode.SelectSingleNode("id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[" + tableRow + "]//td/text()[4]").InnerHtml.Trim())
-                                       
-                                       let postContent = document.DocumentNode.SelectSingleNode("id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_" + i + "')").InnerHtml
-                                       select new Post
-                                                  {
-                                                      Content = postContent, 
-                                                      Hash = _hashProvider.Compute(postContent), 
-                                                      ThreadId = threadId, 
-                                                      PostDate = postDate, 
-                                                      PostTitle = threadTitle,
-                                                  }).ToList();
+                var postsCollection = new List<Post>();
+
+                foreach (int i in Enumerable.Range(1, 10))
+                {
+                    var tableRow = 1 + (2 * i);
+
+                    var threadHref =
+                    document.DocumentNode.SelectSingleNode(
+                        "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[" + tableRow + "]//td/a/@href").Attributes[0].Value;
+                    var threadId = int.Parse(Regex.Match(threadHref, @"(\d+)$").Groups[0].Value);
+
+                    var threadTitle =
+                        document.DocumentNode.SelectSingleNode(
+                            "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[" + tableRow + "]//td/a/text()").InnerHtml.Trim();
+
+                    var postDate = DateTime.Parse(
+                        document.DocumentNode.SelectSingleNode(
+                            "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[" + tableRow + "]//td/text()[4]").InnerHtml.Trim());
+
+                    var postContent =
+                        document.DocumentNode.SelectSingleNode(
+                            "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_" + i + "')").InnerHtml;
+
+                    postsCollection.Add(new Post
+                    {
+                        Content = postContent,
+                        Hash = _hashProvider.Compute(postContent),
+                        ThreadId = threadId,
+                        PostDate = postDate,
+                        PostTitle = threadTitle,
+                    });
+                }
+
 
 
                 return postsCollection.Where(newPost => !account.Posts.Select(p => p.Hash).Contains(newPost.Hash));
