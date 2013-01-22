@@ -22,5 +22,7 @@ namespace Nishkriya.Models
 
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }
