@@ -12,7 +12,7 @@
 </p>
 
 <div>
-    @foreach (var post in Model.Posts)
+    @foreach (var post in Model.Posts.OrderByDescending(p => p.PostDate))
     {
         @Html.Partial("_Post", post)
     }
