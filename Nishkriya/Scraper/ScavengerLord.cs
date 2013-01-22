@@ -61,7 +61,7 @@ namespace Nishkriya.Scraper
 
                 var postsCollection = new List<Post>();
 
-                foreach(var i in Enumerable.Range(1,10))
+                foreach(int i in Enumerable.Range(1,10))
                 {
                     var tableRow = 1 + (2*i);
                     
