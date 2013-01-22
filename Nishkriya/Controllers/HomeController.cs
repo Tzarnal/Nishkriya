@@ -16,9 +16,10 @@ namespace Nishkriya.Controllers
             return View();
         }
 
-        public ActionResult _Sidebar()
+        public ActionResult _Sidebar(dynamic selected)
         {
-            return View(db.Accounts.ToList());
+            ViewBag.selectedSidebarEntry = selected;
+            return PartialView(db.Accounts.ToList());
         }
 
     }
