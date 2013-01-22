@@ -27,6 +27,7 @@ namespace Nishkriya.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.selectedSidebarEntry = forumaccount.Name;
             return View(forumaccount);
         }
 
