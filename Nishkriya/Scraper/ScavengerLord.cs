@@ -25,7 +25,7 @@ namespace Nishkriya.Scraper
         {
             using (var db = new NishkriyaContext())
             {
-                db.Accounts.ToList().ForEach(account => account.Posts.AddRange(GetNewPosts(account, db.Threads.ToList())));
+                db.Accounts.Where(a => a.Active).ToList().ForEach(account => account.Posts.AddRange(GetNewPosts(account, db.Threads.ToList())));
                 db.SaveChanges();
             }
         }
