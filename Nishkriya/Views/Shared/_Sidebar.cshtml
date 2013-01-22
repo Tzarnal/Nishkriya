@@ -1,4 +1,4 @@
-﻿@model IList<Nishkriya.Models.ForumAccount>
+﻿@model Nishkriya.Models.ViewModels.SidebarViewModel
 @{Layout = null;}
    
 <!--The sidebar -->
@@ -18,7 +18,7 @@
 
                   
         <li class="nav-header">Posters</li>
-        @foreach(var account in Model)
+        @foreach(var account in Model.accountList)
         {
             <li class="@(ViewBag.selectedSidebarEntry == @account.Name ? "active":"")"> @Html.ActionLink(account.Name, "Details","Accounts", new{id = account.Id}, new {}) </li>
         }

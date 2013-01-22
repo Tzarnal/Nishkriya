@@ -16,11 +16,6 @@ namespace Nishkriya.Controllers
             return View();
         }
 
-        public ActionResult _Sidebar(dynamic selected)
-        {
-            ViewBag.selectedSidebarEntry = selected;
-            return PartialView(db.Accounts.ToList());
-        }
 
     }
 }
