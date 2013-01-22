@@ -22,26 +22,16 @@ namespace Nishkriya.Controllers
 
             if (user != null && BCrypt.CheckPassword(authenticationViewModel.Password, user.Password))
             {
-                var ticket = new FormsAuthenticationTicket(1, 
-                                                           user.Username, 
-                                                           DateTime.Now, 
-                                                           DateTime.Now.AddMonths(1),
-                                                           true, user.Username);
-
-                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
-
-                Response.Cookies.Add(authCookie);
+                Response.Cookies.Add(GenerateAuthenticationCookie(user));
             }
 
             return RedirectToAction("Index", "Home");
         }
 
-
         public ActionResult Create()
         {
             return View();
         }
-
 
         [HttpPost]
         public ActionResult Create(NewUserViewModel newUser)
@@ -61,7 +51,21 @@ namespace Nishkriya.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            return View(newUser);
         }
+
+
+        private HttpCookie GenerateAuthenticationCookie(User user)
+        {
+            var ticket = new FormsAuthenticationTicket(1,
+                                                       user.Username,
+                                                       DateTime.Now,
+                                                       DateTime.Now.AddMonths(1),
+                                                       true, user.Username);
+
+            return new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
+        }
+
+
     }
 }
