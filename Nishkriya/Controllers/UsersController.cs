@@ -14,11 +14,11 @@ namespace Nishkriya.Controllers
         NishkriyaContext db = new NishkriyaContext();
 
         [HttpPost]
-        public ActionResult Login(UserViewModel userViewModel)
+        public ActionResult Login(AuthenticationViewModel authenticationViewModel)
         {
-            var user = db.Users.SingleOrDefault(a => a.Username == userViewModel.Username);
+            var user = db.Users.SingleOrDefault(a => a.Username == authenticationViewModel.Username);
 
-            if (user != null && BCrypt.CheckPassword(userViewModel.Password, user.Password))
+            if (user != null && BCrypt.CheckPassword(authenticationViewModel.Password, user.Password))
             {
                 var ticket = new FormsAuthenticationTicket(1, 
                                                            user.Username, 
