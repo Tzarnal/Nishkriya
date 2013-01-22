@@ -14,6 +14,7 @@ namespace Nishkriya.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.selectedSidebarEntry = "Posters";
             return View(db.Accounts.ToList());
         }
 
