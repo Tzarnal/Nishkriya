@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Posts by: @Model.Name</h2>
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
@@ -12,11 +12,8 @@
 </p>
 
 <div>
-    @foreach (var post in Model.Posts)
+    @foreach (var post in Model.Posts.OrderByDescending(p => p.PostDate))
     {
-        <div class="developer-quote">
-            <h3>@post.ForumAccount.Name said</h3>
-            @Html.Raw(post.Content)
-        </div>
+        @Html.Partial("_Post", post)
     }
 </div>

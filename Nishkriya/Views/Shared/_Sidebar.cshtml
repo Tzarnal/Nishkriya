@@ -1,4 +1,4 @@
-﻿@model IList<Nishkriya.Models.ForumAccount>
+﻿@model Nishkriya.Models.ViewModels.SidebarViewModel
 @{Layout = null;}
    
 <!--The sidebar -->
@@ -14,11 +14,11 @@
         <li class="nav-header">View</li>
         <li class="@(ViewBag.selectedSidebarEntry == "All Threads" ? "active":"")"><a href="#">All Threads</a></li>
         <li class="@(ViewBag.selectedSidebarEntry == "All Posts" ? "active":"")"><a href="#">All Posts</a></li>
-        <li class="@(ViewBag.selectedSidebarEntry == ">Posters" ? "active":"")"><a href="#">Posters</a></li>
+        <li class="@(ViewBag.selectedSidebarEntry == "Posters" ? "active":"")">@Html.ActionLink("Posters","Index","Accounts")</li>
 
                   
         <li class="nav-header">Posters</li>
-        @foreach(var account in Model)
+        @foreach(var account in Model.accountList)
         {
             <li class="@(ViewBag.selectedSidebarEntry == @account.Name ? "active":"")"> @Html.ActionLink(account.Name, "Details","Accounts", new{id = account.Id}, new {}) </li>
         }

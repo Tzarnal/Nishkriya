@@ -14,6 +14,7 @@ namespace Nishkriya.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.selectedSidebarEntry = "Posters";
             return View(db.Accounts.ToList());
         }
 
@@ -27,6 +28,7 @@ namespace Nishkriya.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.selectedSidebarEntry = forumaccount.Name;
             return View(forumaccount);
         }
 

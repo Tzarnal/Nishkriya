@@ -1,0 +1,10 @@
+﻿@model Nishkriya.Models.Post
+
+    <div class="developer-container">
+        <h3><a href="@Model.Thread.GetUrl()" target="_blank">@Model.Thread.Title</a></h3>
+        <h5>@Model.ForumAccount.Name - @Model.PostDate.ToString()</h5>
+        
+        <div class="developer-quote">
+            @Html.Raw(Model.Content)
+        </div>
+    </div>
