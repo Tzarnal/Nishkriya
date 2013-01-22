@@ -17,5 +17,8 @@ namespace Nishkriya.Models.ViewModels
 
         [EmailAddress]
         public string Email { get; set; }
+
+        [Display(Name = "Secret", Description = "Do you know the secret?")]
+        public string Secret { get; set; }
     }
 }

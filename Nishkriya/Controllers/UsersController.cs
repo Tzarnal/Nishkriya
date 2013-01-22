@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Nishkriya.Models;
+using Nishkriya.Models.ViewModels;
 using Nishkriya.Security;
 
 namespace Nishkriya.Controllers
@@ -42,17 +43,13 @@ namespace Nishkriya.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(NewUserViewModel newUser)
         {
-            try
-            {
-
-                return RedirectToAction("Index");
-            }
-            catch
+            if (ModelState.IsValid)
             {
                 return View();
             }
+            return View();
         }
     }
 }
