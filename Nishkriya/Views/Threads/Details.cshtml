@@ -1,0 +1,14 @@
+﻿@model Nishkriya.Models.Thread
+
+<h2><a href="@Model.GetUrl()">@Model.Title</a></h2>
+
+@foreach (var post in @Model.Posts.OrderBy(p => p.PostDate) )
+{   
+       <div class="developer-container">        
+        <h5>@post.ForumAccount.Name - @post.PostDate.ToString()</h5>
+        
+        <div class="developer-quote">
+            @Html.Raw(post.Content)
+        </div>
+    </div>
+}

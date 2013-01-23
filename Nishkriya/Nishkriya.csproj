@@ -128,6 +128,7 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\ThreadsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +207,9 @@
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Shared\_Post.cshtml" />
+    <Content Include="Views\Threads\Index.cshtml" />
+    <Content Include="Views\Threads\LatestTopics.cshtml" />
+    <Content Include="Views\Threads\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
