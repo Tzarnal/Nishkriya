@@ -9,7 +9,8 @@
         <dt>@Html.ActionLink(@thread.Title,"Details","Threads",new{id = thread.ThreadId}, new {})</dt>
         <dd>
             Posts:@thread.Posts.Count() <br/>
-            Last Post: @thread.Posts.OrderByDescending(p => p.PostDate).Last().PostDate <br/>
+
+            Last Post:  @thread.Posts.OrderBy(p => p.PostDate).Last().TimeSincePost()  by @thread.Posts.OrderBy(p => p.PostDate).Last().ForumAccount.Name  <br/>
             &nbsp;
         </dd>
     }

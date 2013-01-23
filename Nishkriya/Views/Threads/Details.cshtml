@@ -5,7 +5,7 @@
 @foreach (var post in @Model.Posts.OrderBy(p => p.PostDate) )
 {   
        <div class="developer-container">        
-        <h5>@post.ForumAccount.Name - @post.PostDate.ToString()</h5>
+        <h5>@post.ForumAccount.Name - @post.TimeSincePost()</h5>
         
         <div class="developer-quote">
             @Html.Raw(post.Content)

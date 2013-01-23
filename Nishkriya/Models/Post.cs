@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Configuration;
 
 namespace Nishkriya.Models
 {
@@ -23,6 +24,31 @@ namespace Nishkriya.Models
         public override int GetHashCode()
         {
             return (Hash != null ? Hash.GetHashCode() : 0);
+        }
+
+        public  string TimeSincePost()
+        {
+            //The forum account used to scrape should be set to the UTC timezone.
+            var timeDifference = (DateTime.UtcNow - PostDate);
+            
+            var result = "";
+            if (timeDifference.TotalHours < 1)
+            {
+                result = string.Format("{0} Minute(s) ago", Math.Round(timeDifference.TotalMinutes));
+            }else if (timeDifference.TotalDays < 1)
+            {
+                result = string.Format("{0} Hour(s) ago", Math.Round(timeDifference.TotalHours));
+            }
+            else if (timeDifference.TotalDays < 7)
+            {
+                result = string.Format("{0} Day(s) ago", Math.Round(timeDifference.TotalDays));
+            }
+            else
+            {
+                result = PostDate.ToShortDateString();
+            }
+
+            return result;
         }
     }
 }
