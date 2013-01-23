@@ -12,8 +12,9 @@ namespace Nishkriya.Controllers
         {
             ViewBag.Title = "All Topics";
             ViewBag.selectedSidebarEntry = "All Topics";
-            
-            return View();
+            var threads = db.Threads.OrderByDescending(t => t.ThreadId);
+
+            return View(threads);
         }
 
         public ActionResult LatestTopics()
