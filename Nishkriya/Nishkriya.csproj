@@ -210,6 +210,7 @@
     <Content Include="Views\Threads\Index.cshtml" />
     <Content Include="Views\Threads\LatestTopics.cshtml" />
     <Content Include="Views\Threads\Details.cshtml" />
+    <Content Include="Views\Shared\_Thread.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
