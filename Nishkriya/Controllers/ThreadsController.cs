@@ -10,20 +10,25 @@ namespace Nishkriya.Controllers
 
         public ActionResult Index()
         {
+            
+            
             return View();
         }
 
         public ActionResult LatestTopics()
         {
-            return View();
+            var threads = db.Threads.OrderByDescending(t => t.ThreadId).Take(10);
+            ViewBag.Title = "Latest Topics";
+            ViewBag.SelectedItem = "Latest Topics";
+
+            return View(threads);
         }
 
         public ActionResult Details(int id)
         {
-
             var thread = db.Threads.Single(t => t.ThreadId == id);
-
             ViewBag.Title = thread.Title;
+
             return View(thread);
         }
     }

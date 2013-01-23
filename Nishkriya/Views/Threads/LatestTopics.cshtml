@@ -1,2 +1,17 @@
-﻿@model dynamic
+﻿@model IEnumerable<Nishkriya.Models.Thread>
 
+<h2>Latest Topics</h2>
+
+<dl>
+
+    @foreach (var thread in @Model)
+    {
+        <dt>@Html.ActionLink(@thread.Title,"Details","Threads",new{id = thread.ThreadId}, new {})</dt>
+        <dd>
+            Posts:@thread.Posts.Count() <br/>
+            Last Post: @thread.Posts.OrderByDescending(p => p.PostDate).Last().PostDate <br/>
+            &nbsp;
+        </dd>
+    }
+
+</dl>
