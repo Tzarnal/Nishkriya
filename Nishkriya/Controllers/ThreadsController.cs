@@ -10,7 +10,8 @@ namespace Nishkriya.Controllers
 
         public ActionResult Index()
         {
-            
+            ViewBag.Title = "All Topics";
+            ViewBag.selectedSidebarEntry = "All Topics";
             
             return View();
         }
@@ -19,7 +20,7 @@ namespace Nishkriya.Controllers
         {
             var threads = db.Threads.OrderByDescending(t => t.ThreadId).Take(10);
             ViewBag.Title = "Latest Topics";
-            ViewBag.SelectedItem = "Latest Topics";
+            ViewBag.selectedSidebarEntry = "Latest Topics";
 
             return View(threads);
         }
