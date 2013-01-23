@@ -203,8 +203,6 @@
     <Content Include="Views\Accounts\Create.cshtml" />
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Delete.cshtml" />
-    <Content Include="Views\Home\_Sidebar.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Shared\_Post.cshtml" />
