@@ -128,6 +128,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\ThreadsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -221,6 +222,9 @@
     <Content Include="Views\Shared\_Paginator.cshtml" />
     <Content Include="Views\Home\_Session.cshtml" />
     <Content Include="Views\Home\Stats.cshtml" />
+    <Content Include="Views\Posts\Page.cshtml" />
+    <Content Include="Views\Posts\LatestPosts.cshtml" />
+    <Content Include="Views\Posts\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
