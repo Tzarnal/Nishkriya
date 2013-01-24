@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Web.Mvc;
 using Nishkriya.Models;
 
@@ -12,14 +14,15 @@ namespace Nishkriya.Controllers
         {
             ViewBag.Title = "All Topics";
             ViewBag.selectedSidebarEntry = "All Topics";
-            var threads = db.Threads.OrderByDescending(t => t.ThreadId);
+            var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate));
 
             return View(threads);
         }
 
         public ActionResult LatestTopics()
         {
-            var threads = db.Threads.OrderByDescending(t => t.ThreadId).Take(10);
+            var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate)).Take(10);
+                                             
             ViewBag.Title = "Latest Topics";
             ViewBag.selectedSidebarEntry = "Latest Topics";
 
