@@ -1,2 +1,10 @@
-﻿@model dynamic
+﻿@model IEnumerable<Nishkriya.Models.Post>
 
+<h2>All Posts</h2>
+
+@foreach(var post in @Model)
+{
+    @Html.Partial("_Post", post)
+}
+
+@Html.Partial("_Paginator",(Nishkriya.Models.ViewModels.PaginatorViewModel) ViewBag.Paginator)
