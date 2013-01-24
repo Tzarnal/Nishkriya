@@ -15,6 +15,7 @@ namespace Nishkriya.Models
         public string Title { get; set; }
         public virtual List<Post> Posts { get; set; }
 
+        [NotMapped]
         public Uri Url
         {
             get
