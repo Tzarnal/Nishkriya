@@ -66,15 +66,17 @@ namespace Nishkriya.Scraper
                 const string titleSelectorFragment = "]//td/a/text()";
                 const string dateSelectorFragment = "]//td/text()[4]";
 
-                foreach (var node in document.DocumentNode.ChildNodes.Where(child => child.Attributes.Any(a => a.Name == "class" && a.Value == "spoilertitle")))
-                {
-                    document.DocumentNode.RemoveChild(node);
-                }
-
-                foreach (var node in document.DocumentNode.ChildNodes.Where(child => child.Attributes.Any(a => a.Name == "class" && a.Value == "spoilerbox")))
-                {
-                    document.DocumentNode.RemoveChild(node);
-                }
+                document.DocumentNode.ChildNodes
+                        .Where(child => child.Attributes
+                            .Any(a => a.Name == "class" && a.Value == "spoilertitle"))
+                        .Concat(document.DocumentNode.ChildNodes
+                            .Where(child => child.Attributes
+                                .Any(a => a.Name == "class" && a.Value == "spoilerbox")))
+                        .Concat(document.DocumentNode.ChildNodes
+                            .Where(child => child.Attributes
+                                .Any(a => a.Name == "class" && a.Value == "yafsignature")))
+                        .ToList()
+                        .ForEach(node => document.DocumentNode.ChildNodes.Remove(node));
 
                 foreach (int i in Enumerable.Range(0, 10))
                 {
