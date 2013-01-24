@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Web.Mvc;
+using Nishkriya.Models;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace Nishkriya.Controllers
 {
     public class PostsController : Controller
     {
+        NishkriyaContext db = new NishkriyaContext();
+        
         public ActionResult Index()
         {
             return Page();
@@ -21,12 +21,18 @@ namespace Nishkriya.Controllers
 
         public ActionResult LatestPosts()
         {
-            return View();
+            var posts = db.Posts.OrderByDescending(p => p.PostDate).Take(10);
+            ViewBag.selectedSidebarEntry = "Latest Posts";
+            ViewBag.Title = "Latest Posts";
+
+            return View(posts);
         }
 
         public ActionResult Details(int id)
         {
-            return View();
+            var post = db.Posts.FirstOrDefault(p => p.Id == id);
+            
+            return View(post);
         }
     }
 }

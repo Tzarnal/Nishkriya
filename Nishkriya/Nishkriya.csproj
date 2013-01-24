@@ -214,6 +214,9 @@
     <Content Include="Views\Threads\Details.cshtml" />
     <Content Include="Views\Shared\_Thread.cshtml" />
     <Content Include="Views\Shared\_Paginator.cshtml" />
+    <Content Include="Views\Posts\Page.cshtml" />
+    <Content Include="Views\Posts\LatestPosts.cshtml" />
+    <Content Include="Views\Posts\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
