@@ -54,7 +54,6 @@ namespace Nishkriya.Controllers
             return View(newUser);
         }
 
-
         private HttpCookie GenerateAuthenticationCookie(User user)
         {
             var ticket = new FormsAuthenticationTicket(1,
@@ -65,7 +64,6 @@ namespace Nishkriya.Controllers
 
             return new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
         }
-
 
     }
 }

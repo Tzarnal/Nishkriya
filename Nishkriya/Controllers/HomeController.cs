@@ -15,7 +15,5 @@ namespace Nishkriya.Controllers
 
             return View();
         }
-
-
     }
 }
