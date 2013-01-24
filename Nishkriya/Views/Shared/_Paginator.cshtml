@@ -1,0 +1,47 @@
+﻿@model Nishkriya.Models.ViewModels.PaginatorViewModel
+
+<div class="pagination">
+        <ul>
+            <li class="@(@Model.PageIndex == 1 ? "disabled":"")">
+                @Html.ActionLink("«",@Model.Action,@Model.Controller,new{id = 1}, new {})
+            </li>
+            
+            @if(@Model.PageIndex - 1 > 0)
+            {
+                <li class="">@Html.ActionLink("<",@Model.Action,@Model.Controller,new{id = @Model.PageIndex -1}, new {})</li>            
+            }else
+            {
+                <li class="disabled"><a href="#"><</a></li>
+            }
+                    
+            @for (int i = @Model.PageIndex - @Model.MaximumSpread; i < @Model.PageIndex ; i++ )
+            {
+                if (i > 0)
+                {
+                    <li>@Html.ActionLink(@i.ToString(),@Model.Action,@Model.Controller,new{id = @i}, new {})</li>
+                }
+            }
+            
+            <li class="active">@Html.ActionLink(@Model.PageIndex.ToString(),@Model.Action,@Model.Controller,new{id = @Model.PageIndex}, new {})</li>            
+
+            @for (int i = @Model.PageIndex + 1; i <= @Model.PageIndex + @Model.MaximumSpread; i++)
+            {
+                if (i <= @Model.TotalPages)
+                {
+                    <li>@Html.ActionLink(@i.ToString(),@Model.Action,@Model.Controller,new{id = @i}, new {})</li>
+                }
+            }
+
+            @if(@Model.PageIndex < @Model.TotalPages)
+            {
+                <li class="">@Html.ActionLink(">",@Model.Action,@Model.Controller,new{id = @Model.PageIndex +1}, new {})</li>            
+            }else
+            {
+                <li class="disabled"><a href="#">></a></li>
+            }
+            
+            <li class="@(@Model.PageIndex == @Model.TotalPages ? "disabled":"")">
+                @Html.ActionLink("»",@Model.Action,@Model.Controller,new{id = @Model.TotalPages}, new {})
+            </li>
+        </ul>
+    </div>

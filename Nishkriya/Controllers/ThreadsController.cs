@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using Nishkriya.Models;
+using Nishkriya.Models.ViewModels;
 
 namespace Nishkriya.Controllers
 {
@@ -12,11 +13,24 @@ namespace Nishkriya.Controllers
 
         public ActionResult Index()
         {
+            return Page();
+        }
+
+        public ActionResult Page(int id=0)
+        {
+            var pageSize = 20; //Amount of elements on a page
+
+            var threads = db.Threads.OrderBy(thread => thread.Posts.Max(post => post.PostDate));
+            var totalPages = threads.Count()/pageSize;
+            if (id == 0)
+                id = totalPages;
+
             ViewBag.Title = "All Topics";
             ViewBag.selectedSidebarEntry = "All Topics";
-            var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate));
-
-            return View(threads);
+            ViewBag.Paginator = new PaginatorViewModel {PageIndex = id,TotalPages = totalPages, MaximumSpread = 3,Action = "Page",Controller = "Threads"};
+ 
+            var selectedTheads = threads.Skip((id - 1) * pageSize).Take(pageSize).OrderByDescending(thread => thread.Posts.Max(post => post.PostDate));
+            return View("Page", selectedTheads);
         }
 
         public ActionResult LatestTopics()
