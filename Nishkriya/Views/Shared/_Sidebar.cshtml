@@ -7,13 +7,13 @@
     <ul class="nav nav-list">
         <li class="nav-header">Home</li>
         <li class="@(ViewBag.selectedSidebarEntry == "Latest Topics" ? "active":"")">@Html.ActionLink("Latest Topics","LatestTopics","Threads")</li>
-        <li class="@(ViewBag.selectedSidebarEntry == "Latest Posts" ? "active":"")"><a href="#">Latest Posts</a></li>
+        <li class="@(ViewBag.selectedSidebarEntry == "Latest Posts" ? "active":"")">@Html.ActionLink("Latest Posts","LatestPosts","Posts")</li>
         <li class="@(ViewBag.selectedSidebarEntry == "About" ? "active":"")"><a href="#">About</a></li>
         <li class="@(ViewBag.selectedSidebarEntry == "Contact" ? "active":"")"><a href="#">Contact</a></li>
                   
         <li class="nav-header">View</li>
-        <li class="@(ViewBag.selectedSidebarEntry == "All Topics" ? "active":"")"><a href="#">@Html.ActionLink("All Topics","Index","Threads")</a></li>
-        <li class="@(ViewBag.selectedSidebarEntry == "All Posts" ? "active":"")"><a href="#">All Posts</a></li>
+        <li class="@(ViewBag.selectedSidebarEntry == "All Topics" ? "active":"")">@Html.ActionLink("All Topics","Index","Threads")</li>
+        <li class="@(ViewBag.selectedSidebarEntry == "All Posts" ? "active":"")">@Html.ActionLink("All Posts","Index","Posts")</li>
         <li class="@(ViewBag.selectedSidebarEntry == "Posters" ? "active":"")">@Html.ActionLink("Posters","Index","Accounts")</li>
 
                   
