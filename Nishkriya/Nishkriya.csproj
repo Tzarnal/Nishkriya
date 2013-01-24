@@ -218,6 +218,8 @@
     <Content Include="Views\Threads\Details.cshtml" />
     <Content Include="Views\Shared\_Thread.cshtml" />
     <Content Include="Views\Shared\_Paginator.cshtml" />
+    <Content Include="Views\Home\_Session.cshtml" />
+    <Content Include="Views\Home\Stats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

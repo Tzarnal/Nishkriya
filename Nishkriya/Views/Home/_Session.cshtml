@@ -1,0 +1,22 @@
+﻿@model Nishkriya.Models.ScraperSession
+
+<tr>
+    <td>@Model.Start</td>
+</tr>
+<tr>
+    <td>@Model.Finish</td>
+</tr>
+<tr>
+    <td>@Model.TimeTaken</td>
+</tr>
+<tr>
+    @Model.PostsAdded
+</tr>
+<tr>
+    @Model.ThreadsAdded
+</tr>
+<tr>
+    @{
+        Model.HadErrors ? Model.Errors.Count : -
+    }
+</tr>
