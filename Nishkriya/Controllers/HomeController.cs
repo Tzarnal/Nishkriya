@@ -6,7 +6,7 @@ namespace Nishkriya.Controllers
 {
     public class HomeController : Controller
     {
-        NishkriyaContext db = new NishkriyaContext();
+        readonly NishkriyaContext db = new NishkriyaContext();
 
         public ActionResult Index()
         {            
@@ -14,6 +14,12 @@ namespace Nishkriya.Controllers
             ViewBag.selectedSidebarEntry = "Latest Posts"; 
 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Stats()
+        {
+            return View(db.Stats);
         }
     }
 }
