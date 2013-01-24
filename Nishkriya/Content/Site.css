@@ -57,3 +57,11 @@ padding: 9px 0;
     margin-left: 10px;
         
 }
+
+.stats-table th {
+    text-align: left;
+}
+
+.stats-table td {
+    min-width: 100px;
+}

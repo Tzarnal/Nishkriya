@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Nishkriya.Models;
 
@@ -19,7 +20,8 @@ namespace Nishkriya.Controllers
         [HttpGet]
         public ActionResult Stats()
         {
-            return View(db.Stats);
+            var today = DateTime.Now.Date;
+            return View(db.Stats.Where(s => s.Start > today).OrderByDescending(s => s.Start));
         }
     }
 }

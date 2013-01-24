@@ -25,7 +25,7 @@ namespace Nishkriya.Scraper
         {
             using (var db = new NishkriyaContext())
             {
-                var session = new ScraperSession(DateTime.Now);
+                var session = new ScraperSession { Start = DateTime.Now };
 
                 db.Accounts.Where(a => a.Active).ToList().ForEach(account =>
                     {

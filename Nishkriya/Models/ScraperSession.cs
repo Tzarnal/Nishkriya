@@ -23,10 +23,5 @@ namespace Nishkriya.Models
         {
             get { return Finish - Start; }
         }
-
-        public ScraperSession(DateTime start)
-        {
-            Start = start;
-        }
     }
 }

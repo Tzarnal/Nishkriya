@@ -5,23 +5,32 @@
     ViewBag.Title = "Stats";
 }
 
-<h2>Stats</h2>
+<h2>Stats for Today</h2>
 
-<table>
+<table class="stats-table">
     <thead>
         <tr>
-            <td>Started</td>
-            <td>Finished</td>
-            <td>Duration</td>
-            <td>Posts Added</td>
-            <td>Threads Added</td>
-            <td>Errors</td>
+            <th>Time</th>
+            <th>Duration (s)</th>
+            <th>Posts</th>
+            <th>Threads</th>
+            <th>Errors</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var session in Model.OrderByDescending(m => m.Start))
+        @foreach (var session in Model)
         {
             @Html.Partial("_Session", session)
         }
     </tbody>
+    <tfoot>
+        <tr><td></td></tr>
+        <tr>
+            <td>Average</td>
+            <td>@{
+                    @((Model.Sum(s => s.TimeTaken.TotalMilliseconds) / Model.Count() / 1000).ToString("F"))
+                }
+            </td>
+        </tr>
+    </tfoot>
 </table>
