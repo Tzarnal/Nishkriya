@@ -19,7 +19,7 @@ namespace Nishkriya.Controllers
             var pageSize = 20; //Amount of elements on a page
 
             var threads = db.Threads.OrderBy(thread => thread.Posts.Max(post => post.PostDate));
-            var totalPages = threads.Count()/pageSize;
+            var totalPages = ( (threads.Count()/pageSize) > 0 ? (threads.Count()/pageSize) : 1);
             if (id == 0)
                 id = totalPages;
 
@@ -28,6 +28,7 @@ namespace Nishkriya.Controllers
             ViewBag.Paginator = new PaginatorViewModel {PageIndex = id,TotalPages = totalPages, MaximumSpread = 3,Action = "Page",Controller = "Threads"};
  
             var selectedTheads = threads.Skip((id - 1) * pageSize).Take(pageSize).OrderByDescending(thread => thread.Posts.Max(post => post.PostDate));
+            
             return View("Page", selectedTheads);
         }
 
@@ -43,7 +44,7 @@ namespace Nishkriya.Controllers
 
         public ActionResult Details(int id)
         {
-            var thread = db.Threads.Single(t => t.ThreadId == id);
+            var thread = db.Threads.SingleOrDefault(t => t.ThreadId == id);
             ViewBag.Title = thread.Title;
 
             return View(thread);

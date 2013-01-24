@@ -19,7 +19,7 @@ namespace Nishkriya.Controllers
             var pageSize = 20;
 
             var posts = db.Posts.OrderBy(p => p.PostDate);
-            var totalPages = posts.Count()/pageSize;
+            var totalPages = ((posts.Count() / pageSize) > 0 ? (posts.Count() / pageSize) : 1);
             if (id == 0)
                 id = totalPages;
 
