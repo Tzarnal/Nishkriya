@@ -7,7 +7,6 @@ namespace Nishkriya.Controllers
 {
     public class SharedController : Controller
     {
-
         NishkriyaContext db = new NishkriyaContext();
 
         public ActionResult _Sidebar(dynamic selected)
