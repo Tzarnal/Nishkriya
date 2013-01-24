@@ -1,10 +1,7 @@
 ﻿@model IEnumerable<Nishkriya.Models.Post>
 
-<div>
-    <h2>Latest Posts</h2>
-    @foreach (var post in @Model)
-    {   
-        @Html.Partial("_Post", post)
-    }
-
-</div>
+<h2>Latest Posts</h2>
+@foreach (var post in @Model)
+{   
+    @Html.Partial("_Post", post)
+}
