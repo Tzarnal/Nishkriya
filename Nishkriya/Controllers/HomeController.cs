@@ -10,7 +10,7 @@ namespace Nishkriya.Controllers
 
         public ActionResult Index()
         {
-            RedirectToAction("LatestPosts", "Posts");
+            return RedirectToAction("LatestPosts", "Posts");
         }
     }
 }
