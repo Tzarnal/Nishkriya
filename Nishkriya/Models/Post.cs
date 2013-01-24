@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Configuration;
 
 namespace Nishkriya.Models
 {
@@ -26,12 +25,17 @@ namespace Nishkriya.Models
             return (Hash != null ? Hash.GetHashCode() : 0);
         }
 
+        public override string ToString()
+        {
+            return Content;
+        }
+
         public  string TimeSincePost()
         {
             //The forum account used to scrape should be set to the UTC timezone.
             var timeDifference = (DateTime.UtcNow - PostDate);
             
-            var result = "";
+            string result;
             if (timeDifference.TotalHours < 1)
             {
                 result = string.Format("{0} Minute(s) ago", Math.Round(timeDifference.TotalMinutes));
