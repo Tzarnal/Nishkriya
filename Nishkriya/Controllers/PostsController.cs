@@ -10,7 +10,7 @@ namespace Nishkriya.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Page();
         }
 
         public ActionResult Page(int id = 0)
@@ -19,7 +19,7 @@ namespace Nishkriya.Controllers
 
         }
 
-        public ActionResult LatestTopics()
+        public ActionResult LatestPosts()
         {
             return View();
         }
