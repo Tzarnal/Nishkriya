@@ -15,9 +15,14 @@ namespace Nishkriya.Models
         public string Title { get; set; }
         public virtual List<Post> Posts { get; set; }
 
-        public Uri GetUrl()
+        public Uri Url
         {
-            return new Uri("http://forums.white-wolf.com/default.aspx?g=posts&t=" + ThreadId.ToString(CultureInfo.InvariantCulture));
+            get
+            {
+                return
+                    new Uri("http://forums.white-wolf.com/default.aspx?g=posts&t=" +
+                            ThreadId.ToString(CultureInfo.InvariantCulture));
+            }
         }
     }
 }
