@@ -3,9 +3,25 @@
 
 @{
     ViewBag.Title = "Stats";
+    var process = @System.Diagnostics.Process.GetCurrentProcess();
 }
 
 <h2>Stats for Today</h2>
+
+<table class="stats-table">
+    <thead>
+        <th>Memory (KB)</th>
+        <th>CPU Time</th>
+        <th>Uptime</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@(GC.GetTotalMemory(false) / 1024)</td>
+            <td>@((process.TotalProcessorTime).ToString(@"d\.hh\:mm\:ss"))</td>
+            <td>@((DateTime.Now - process.StartTime).ToString(@"d\.hh\:mm\:ss"))</td>
+        </tr>
+    </tbody>
+</table>
 
 <table class="stats-table">
     <thead>
@@ -24,7 +40,6 @@
         }
     </tbody>
     <tfoot>
-        <tr><td></td></tr>
         <tr>
             <td>Average</td>
             <td>@{

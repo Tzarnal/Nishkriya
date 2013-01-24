@@ -58,6 +58,10 @@ padding: 9px 0;
         
 }
 
+.stats-table {
+    margin-bottom: 20px;
+}
+
 .stats-table th {
     text-align: left;
 }
