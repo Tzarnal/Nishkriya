@@ -7,6 +7,11 @@ namespace Nishkriya.Models
 {
     public class ScraperSession
     {
+        public ScraperSession()
+        {
+            Errors = new List<Error>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
