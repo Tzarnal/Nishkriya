@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
-using System.Xml;
 using HtmlAgilityPack;
 using Nishkriya.Models;
 using Nishkriya.Properties;
@@ -25,12 +25,23 @@ namespace Nishkriya.Scraper
         {
             using (var db = new NishkriyaContext())
             {
-                db.Accounts.Where(a => a.Active).ToList().ForEach(account => account.Posts.AddRange(GetNewPosts(account, db.Threads.ToList())));
+                var session = new ScraperSession(DateTime.Now);
+
+                db.Accounts.Where(a => a.Active).ToList().ForEach(account =>
+                    {
+                        var toAdd = GetNewPosts(account, db.Threads.ToList(), session).ToList();
+                        session.PostsAdded += toAdd.Count;
+                        account.Posts.AddRange(toAdd);
+                    });
+
+                session.Finish = DateTime.Now;
+
+                db.Stats.Add(session);
                 db.SaveChanges();
             }
         }
 
-        private IEnumerable<Post> GetNewPosts(ForumAccount account, List<Thread> threads)
+        private IEnumerable<Post> GetNewPosts(ForumAccount account, List<Thread> threads, ScraperSession session)
         {
             try
             {
@@ -43,10 +54,15 @@ namespace Nishkriya.Scraper
                 req.CookieContainer = new CookieContainer();
                 req.CookieContainer.Add(new Cookie(".YAFNET_Authentication", Settings.Default.AuthToken, "/", "forums.white-wolf.com"));
 
-                var response = (HttpWebResponse)req.GetResponse();
+                var responseStream = req.GetResponse().GetResponseStream();
                 var document = new HtmlDocument();
 
-                using (var reader = new StreamReader(response.GetResponseStream()))
+                if (responseStream == null)
+                {
+                    throw new NoNullAllowedException();
+                }
+
+                using (var reader = new StreamReader(responseStream))
                 {
                     using (var memoryStream = new MemoryStream())
                     {
@@ -102,6 +118,7 @@ namespace Nishkriya.Scraper
                     {
                         thread = new Thread { ThreadId = threadId, Title = threadTitle };
                         threads.Add(thread);
+                        session.ThreadsAdded++;
                     }
 
                     postsCollection.Add(new Post
@@ -113,16 +130,20 @@ namespace Nishkriya.Scraper
                     });
                 }
 
-
                 return postsCollection.Where(newPost => !account.Posts.Select(p => p.Hash).Contains(newPost.Hash));
             }
             catch (Exception ex)
             {
-                using (var db = new NishkriyaContext())
-                {
-                    db.Errors.Add(new Error { StackTrace = ex.StackTrace, OccurredOn = DateTime.Now });
-                    Debug.WriteLine(ex.Message + "\n----\n" + ex.StackTrace);
-                }
+                session.HadErrors = true;
+                session.Errors.Add(new Error
+                    {
+                        Message = ex.Message,
+                        Source = ex.Source,
+                        StackTrace = ex.StackTrace,
+                        TargetSite = ex.TargetSite.Name
+                    });
+
+                Debug.WriteLine(ex.Message + "\n----\n" + ex.StackTrace);
                 return new Post[0];
             }
         }
