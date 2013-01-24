@@ -137,11 +137,16 @@
     <Compile Include="Migrations\201301222148286_IsAdmin.Designer.cs">
       <DependentUpon>201301222148286_IsAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201301241952580_ScrapeStatistics.cs" />
+    <Compile Include="Migrations\201301241952580_ScrapeStatistics.Designer.cs">
+      <DependentUpon>201301241952580_ScrapeStatistics.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\ForumAccount.cs" />
     <Compile Include="Models\NishkriyaContext.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\ScraperSession.cs" />
     <Compile Include="Models\Thread.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModels\AuthenticationViewModel.cs" />
@@ -223,6 +228,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201301222148286_IsAdmin.resx">
       <DependentUpon>201301222148286_IsAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201301241952580_ScrapeStatistics.resx">
+      <DependentUpon>201301241952580_ScrapeStatistics.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
