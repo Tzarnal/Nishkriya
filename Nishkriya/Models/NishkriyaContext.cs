@@ -9,5 +9,6 @@ namespace Nishkriya.Models
         public DbSet<Error> Errors { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Thread> Threads { get; set; }
+        public DbSet<ScraperSession> Stats { get; set; }
     }
 }
