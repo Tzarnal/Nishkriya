@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Nishkriya.Models;
 using System.Linq;
+using Nishkriya.Models.ViewModels;
 
 namespace Nishkriya.Controllers
 {
@@ -15,7 +16,19 @@ namespace Nishkriya.Controllers
 
         public ActionResult Page(int id = 0)
         {
-            return View();
+            var pageSize = 20;
+
+            var posts = db.Posts.OrderBy(p => p.PostDate);
+            var totalPages = posts.Count()/pageSize;
+            if (id == 0)
+                id = totalPages;
+
+            ViewBag.Title = "All Posts";
+            ViewBag.selectedSidebarEntry = "All Topics";
+            ViewBag.Paginator = new PaginatorViewModel { PageIndex = id, TotalPages = totalPages, MaximumSpread = 3, Action = "Page", Controller = "Posts" };
+
+            var selectedPosts = posts.Skip((id - 1)*pageSize).Take(pageSize).OrderByDescending(p => p.PostDate);
+            return View(selectedPosts);
 
         }
 
