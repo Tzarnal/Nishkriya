@@ -64,6 +64,7 @@ padding: 9px 0;
 
 .stats-table th {
     text-align: left;
+    background-color: gainsboro;
 }
 
 .stats-table td {
