@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Nishkriya.Models;
 using Nishkriya.Models.ViewModels;
+using Nishkriya.Properties;
 
 namespace Nishkriya.Controllers
 {
@@ -16,7 +17,7 @@ namespace Nishkriya.Controllers
 
         public ActionResult Page(int id=0)
         {
-            var pageSize = 20; //Amount of elements on a page
+            var pageSize = Settings.Default.PageSize;
 
             var threads = db.Threads.OrderBy(thread => thread.Posts.Max(post => post.PostDate));
             var totalPages = ( (threads.Count()/pageSize) > 0 ? (threads.Count()/pageSize) : 1);

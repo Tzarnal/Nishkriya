@@ -58,5 +58,14 @@ namespace Nishkriya.Properties {
                 return ((string)(this["SecretAnswer"]));
             }
         }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int PageSize {
+            get {
+                return ((int)(this["PageSize"]));
+            }
+        }
     }
 }
