@@ -42,6 +42,42 @@ namespace Nishkriya.Scraper
             }
         }
 
+        private HtmlDocument CleanHtml(HtmlDocument document)
+        {
+            //Make the Spoilers have a unique id and remove the display:none
+            var spoilers = document.DocumentNode.SelectNodes("//*[contains(@class, 'spoilerbox')]");            
+            if(spoilers !=  null)
+            {
+                foreach (var node in spoilers)
+                {
+                    node.Id = "spoilerId";
+                    node.SetAttributeValue("style", "");
+                }
+            }
+
+            //Remove Spoiler buttons
+            var spoilersButtons = document.DocumentNode.SelectNodes("//*[contains(@class, 'spoilertitle')]");
+            if (spoilers != null)
+            {
+                foreach (var node in spoilersButtons)
+                {
+                    node.ParentNode.ChildNodes.Remove(node);
+                }
+            }
+
+            //Remove signatures completly
+            var signatures = document.DocumentNode.SelectNodes("//*[contains(@class, 'yafsignature')]");
+            if (signatures != null)
+            {
+                foreach (var node in signatures)
+                {
+                    node.ParentNode.ChildNodes.Remove(node);
+                }
+            }
+
+            return document;
+        }
+
         private IEnumerable<Post> GetNewPosts(ForumAccount account, List<Thread> threads, ScraperSession session)
         {
             try
@@ -76,24 +112,14 @@ namespace Nishkriya.Scraper
                     }
                 }
 
+                document = CleanHtml(document);
+
                 var postsCollection = new List<Post>();
 
                 const string placeholderFragment = "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[";
                 const string anchorSelectorFragment = "]//td/a/@href";
                 const string titleSelectorFragment = "]//td/a/text()";
                 const string dateSelectorFragment = "]//td/text()[4]";
-
-                document.DocumentNode.ChildNodes
-                        .Where(child => child.Attributes
-                            .Any(a => a.Name == "class" && a.Value == "spoilertitle"))
-                        .Concat(document.DocumentNode.ChildNodes
-                            .Where(child => child.Attributes
-                                .Any(a => a.Name == "class" && a.Value == "spoilerbox")))
-                        .Concat(document.DocumentNode.ChildNodes
-                            .Where(child => child.Attributes
-                                .Any(a => a.Name == "class" && a.Value == "yafsignature")))
-                        .ToList()
-                        .ForEach(node => document.DocumentNode.ChildNodes.Remove(node));
 
                 foreach (int i in Enumerable.Range(0, 10))
                 {
