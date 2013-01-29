@@ -38,14 +38,14 @@ namespace Nishkriya.Models
             string result;
             if (timeDifference.TotalHours < 1)
             {
-                result = string.Format("{0} Minute(s) ago", Math.Round(timeDifference.TotalMinutes));
+                result = Math.Round(timeDifference.TotalMinutes) == 1 ? string.Format("{0} Minutes ago", Math.Round(timeDifference.TotalMinutes)) : "1 Minute Ago";                
             }else if (timeDifference.TotalDays < 1)
             {
-                result = string.Format("{0} Hour(s) ago", Math.Round(timeDifference.TotalHours));
+                result = Math.Round(timeDifference.TotalHours) == 1 ? string.Format("{0} Hours ago", Math.Round(timeDifference.TotalHours)) : "1 Hour Ago";  
             }
             else if (timeDifference.TotalDays < 7)
             {
-                result = string.Format("{0} Day(s) ago", Math.Round(timeDifference.TotalDays));
+                result = Math.Round(timeDifference.TotalDays) == 1 ? string.Format("{0} Days ago", Math.Round(timeDifference.TotalDays)) : "1 Day Ago";  
             }
             else
             {
