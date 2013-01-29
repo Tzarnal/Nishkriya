@@ -32,6 +32,7 @@ namespace Nishkriya.Scraper
                         var toAdd = GetNewPosts(account, db.Threads.ToList(), session).ToList();
                         session.PostsAdded += toAdd.Count;
                         account.Posts.AddRange(toAdd);
+                        db.SaveChanges(); //Pesky thread duplication avoided
                     });
 
                 session.Finish = DateTime.Now;
@@ -44,7 +45,7 @@ namespace Nishkriya.Scraper
         private IEnumerable<Post> GetNewPosts(ForumAccount account, List<Thread> threads, ScraperSession session)
         {
             try
-            {
+            {                                
                 var url = string.Format(Settings.Default.ProfileUrl, account.ForumId);
 
                 var req = (HttpWebRequest)WebRequest.Create(url);
