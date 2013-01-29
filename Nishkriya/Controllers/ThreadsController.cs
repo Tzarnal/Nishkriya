@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Nishkriya.Models;
 using Nishkriya.Models.ViewModels;
@@ -18,11 +19,14 @@ namespace Nishkriya.Controllers
         public ActionResult Page(int id=0)
         {
             var pageSize = Settings.Default.PageSize;
+            var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate));
 
-            var threads = db.Threads.OrderBy(thread => thread.Posts.Max(post => post.PostDate));
-            var totalPages = ( (threads.Count()/pageSize) > 0 ? (threads.Count()/pageSize) : 1);
+            var totalPages = (int) Math.Round(threads.Count()/(float) pageSize);
+            if (totalPages == 0)
+                totalPages = 1;
+            
             if (id == 0)
-                id = totalPages;
+                id = 1;
 
             ViewBag.Title = "All Topics";
             ViewBag.selectedSidebarEntry = "All Topics";

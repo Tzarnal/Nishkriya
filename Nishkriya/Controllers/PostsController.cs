@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Nishkriya.Models;
 using System.Linq;
 using Nishkriya.Models.ViewModels;
@@ -18,11 +19,14 @@ namespace Nishkriya.Controllers
         public ActionResult Page(int id = 0)
         {
             var pageSize = Settings.Default.PageSize;
-
-            var posts = db.Posts.OrderBy(p => p.PostDate);
-            var totalPages = ((posts.Count() / pageSize) > 0 ? (posts.Count() / pageSize) : 1);
+            var posts = db.Posts.OrderByDescending(p => p.PostDate);
+            
+            var totalPages = (int)Math.Round(posts.Count() / (float)pageSize);
+            if (totalPages == 0)
+                totalPages = 1;
+            
             if (id == 0)
-                id = totalPages;
+                id = 1;
 
             ViewBag.Title = "All Posts";
             ViewBag.selectedSidebarEntry = "All Posts";
