@@ -2,7 +2,16 @@
 
 <h2>Latest Topics</h2>
 
-@foreach (var thread in @Model)
-{
-    @Html.Partial("_Thread", thread)
-}
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Posts&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        <th>Last Post &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        <th>Poster;</th>
+    </tr>
+    @foreach (var thread in @Model)
+    {
+        @Html.Partial("_Thread", thread)    
+    
+    }
+</table>
