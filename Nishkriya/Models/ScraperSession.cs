@@ -21,7 +21,7 @@ namespace Nishkriya.Models
         public int ThreadsAdded { get; set; }
         public bool HadErrors { get; set; }
 
-        public List<Error> Errors { get; set; }
+        public virtual List<Error> Errors { get; set; }
 
         [NotMapped]
         public TimeSpan TimeTaken
