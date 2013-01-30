@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Nishkriya.Models
+@using Nishkriya.Models.ViewModels
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -18,7 +20,7 @@
 
               <!-- Main Page Element -->
             <div class="span7">
-    
+                @Html.Partial("_Login", new AuthenticationViewModel())
     
                 @RenderBody()
             </div><!--/span-->

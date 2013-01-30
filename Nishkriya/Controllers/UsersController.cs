@@ -13,7 +13,12 @@ namespace Nishkriya.Controllers
 {
     public class UsersController : Controller
     {
-        NishkriyaContext db = new NishkriyaContext();
+        readonly NishkriyaContext db = new NishkriyaContext();
+
+        public ActionResult Login()
+        {
+            return View(new AuthenticationViewModel());
+        }
 
         [HttpPost]
         public ActionResult Login(AuthenticationViewModel authenticationViewModel)
@@ -23,6 +28,10 @@ namespace Nishkriya.Controllers
             if (user != null && BCrypt.CheckPassword(authenticationViewModel.Password, user.Password))
             {
                 Response.Cookies.Add(GenerateAuthenticationCookie(user));
+            }
+            else
+            {
+                return View("Login", authenticationViewModel);
             }
 
             return RedirectToAction("Index", "Home");

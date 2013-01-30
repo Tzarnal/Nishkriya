@@ -1,0 +1,13 @@
+﻿@model Nishkriya.Models.ViewModels.AuthenticationViewModel
+
+@using (Html.BeginForm("Login","Users", FormMethod.Post)) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Username)
+            @Html.EditorFor(model => model.Password)
+            <input class="top-bar-login" type="submit" value="Login" />            
+        </div>
+    </fieldset>
+}

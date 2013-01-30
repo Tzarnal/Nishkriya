@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Nishkriya.Models
+namespace Nishkriya.Models.ViewModels
 {
     public class AuthenticationViewModel
     {

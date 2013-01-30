@@ -10,7 +10,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>NewUserViewModel</legend>
+        <legend>Enter your details</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Username)
@@ -51,7 +51,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Home")
 </div>
 
 @section Scripts {

@@ -236,6 +236,9 @@
     <Content Include="Views\Posts\Page.cshtml" />
     <Content Include="Views\Posts\LatestPosts.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
+    <Content Include="Views\Users\_Login.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

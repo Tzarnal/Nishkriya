@@ -51,6 +51,7 @@ namespace Nishkriya.Controllers
         //
         // GET: /ForumAccounts/Create
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -60,6 +61,7 @@ namespace Nishkriya.Controllers
         // POST: /ForumAccounts/Create
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create(ForumAccount forumaccount)
         {
             if (ModelState.IsValid)
@@ -90,6 +92,7 @@ namespace Nishkriya.Controllers
         // POST: /ForumAccounts/Edit/5
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(ForumAccount forumaccount)
         {
             if (ModelState.IsValid)
@@ -104,6 +107,7 @@ namespace Nishkriya.Controllers
         //
         // GET: /ForumAccounts/Delete/5
 
+        [Authorize]
         public ActionResult Delete(int id = 0)
         {
             ForumAccount forumaccount = db.Accounts.Find(id);
@@ -117,7 +121,7 @@ namespace Nishkriya.Controllers
         //
         // POST: /ForumAccounts/Delete/5
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete"), Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             ForumAccount forumaccount = db.Accounts.Find(id);
