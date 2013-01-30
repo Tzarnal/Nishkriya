@@ -19,11 +19,13 @@
               @Html.Action("_Sidebar","Shared", new {selected = ViewBag.selectedSidebarEntry})
 
               <!-- Main Page Element -->
-            <div class="span7">
-                @Html.Partial("_Login", new AuthenticationViewModel())
-    
-                @RenderBody()
-            </div><!--/span-->
+              <div class="span7">
+                  @if (ViewBag.Title != "Login")
+                  {
+                      @Html.Partial("_Login", new AuthenticationViewModel())
+                  }
+                  @RenderBody()
+              </div><!--/span-->
           
           </div><!--/row-->
 

@@ -1,5 +1,4 @@
-﻿@model Nishkriya.Models.AuthenticationViewModel
-
+﻿
 @{
     ViewBag.Title = "Login";
 }
@@ -10,19 +9,20 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
+        <legend>Please log in</legend>
         <div class="editor-label">
             @Html.LabelFor(model => model.Username)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Password)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Username)
             @Html.EditorFor(model => model.Password)
-        </div>
-            
-        <div class="editor-field">
-            @Html.ValidationMessageFor(model => model.Username)
             @Html.ValidationMessageFor(model => model.Password)
         </div>
 
