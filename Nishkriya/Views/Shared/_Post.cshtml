@@ -3,7 +3,7 @@
 
     <div class="developer-container">
         <h3>@Html.ActionLink(@Model.Thread.Title, "Details","Threads", new{id = @Model.Thread.ThreadId}, new {})</h3>
-        <h5>[<a title="Link to this post" href="#">#</a>][<a title="Link to this thread on the forums" href="@Model.Thread.Url">F</a>] @Model.ForumAccount.Name - @Model.TimeSincePost()</h5>
+        <h5>[@Html.ActionLink("#","Details","Posts", new{id = @Model.Id}, new{})][<a title="Link to this thread on the forums" href="@Model.Thread.Url">F</a>] @Model.ForumAccount.Name - @Model.TimeSincePost()</h5>
         
         <div class="developer-quote">
             @Html.Raw(Model)
