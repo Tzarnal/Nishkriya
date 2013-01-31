@@ -30,16 +30,8 @@ padding: 9px 0;
 }
 
 .quote {
-    margin: 10px;
-    padding: 10px;
-    background-color: gainsboro;
-}
-
-
-.quote {
-    margin: 10px;
-    padding: 10px;
-    border: 1px dashed #3F3F3F;
+    padding: 5px;
+    border: 1px dashed #5F5F5F;
     background-color: gainsboro;
 }
 
@@ -47,15 +39,19 @@ padding: 9px 0;
     display: none;
 }
 
-.developer-quote {
-    margin: 10px;
-    padding-bottom: 15px;
-    /*border-bottom: 1px solid #3f3f3f*/
+.developer-quote h5 {
+    margin: 0;
 }
 
-.developer-container {    
-    margin-left: 10px;
-        
+.post-subheader {
+    margin: 0;
+}
+
+.developer-container {
+    background-color: #f3f3f3;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 15px;
 }
 
 .stats-table {
@@ -89,4 +85,9 @@ padding: 9px 0;
 .top-bar-login {
     margin-bottom: 10px;
     padding: 4px 12px;
+}
+
+.container-fluid {
+    padding-left: 5px;
+    padding-right: 5px;
 }
