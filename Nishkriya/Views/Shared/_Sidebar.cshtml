@@ -1,10 +1,8 @@
 ﻿@model Nishkriya.Models.ViewModels.SidebarViewModel
 @{Layout = null;}
    
-<!--The sidebar -->
-<div class="span2">
-    <div class="well sidebar-nav">
-    <ul class="nav nav-list">
+@helper MenuItems()
+{
         <li class="nav-header">Home</li>
         <li class="@(ViewBag.selectedSidebarEntry == "Latest Topics" ? "active":"")">@Html.ActionLink("Latest Topics","LatestTopics","Threads")</li>
         <li class="@(ViewBag.selectedSidebarEntry == "Latest Posts" ? "active":"")">@Html.ActionLink("Latest Posts","LatestPosts","Posts")</li>
@@ -18,12 +16,27 @@
 
                   
         <li class="nav-header">Posters</li>
-        @foreach(var account in Model.accountList)
+        foreach(var account in Model.accountList)
         {
             <li class="@(ViewBag.selectedSidebarEntry == @account.Name ? "active":"")"> @Html.ActionLink(account.Name, "Details","Accounts", new{id = account.Id}, new {}) </li>
         }
 
+}
 
+<!--The sidebar -->
+<div class="span2 visible-desktop visible-tablet">
+    <div class="well sidebar-nav">
+    <ul class="nav nav-list ">
+        @MenuItems()
+    </ul>
+    </div><!--/.well -->
+</div><!--/span-->
+
+<!--The sidebar -->
+<div class="span2 fullscreen visible-phone">
+    <div class="well sidebar-nav ">
+    <ul class="nav nav-list">
+        @MenuItems()     
     </ul>
     </div><!--/.well -->
 </div><!--/span-->
