@@ -13,14 +13,15 @@
         <li class="@(ViewBag.selectedSidebarEntry == "All Topics" ? "active":"")">@Html.ActionLink("All Topics","Index","Threads")</li>
         <li class="@(ViewBag.selectedSidebarEntry == "All Posts" ? "active":"")">@Html.ActionLink("All Posts","Index","Posts")</li>
         <li class="@(ViewBag.selectedSidebarEntry == "Posters" ? "active":"")">@Html.ActionLink("Posters","Index","Accounts")</li>
+}
 
-                  
+@helper MenuItemsPosters()
+{
         <li class="nav-header">Posters</li>
         foreach(var account in Model.accountList)
         {
             <li class="@(ViewBag.selectedSidebarEntry == @account.Name ? "active":"")"> @Html.ActionLink(account.Name, "Details","Accounts", new{id = account.Id}, new {}) </li>
         }
-
 }
 
 <!--The sidebar -->
@@ -28,15 +29,23 @@
     <div class="well sidebar-nav">
     <ul class="nav nav-list ">
         @MenuItems()
+        
+        @MenuItemsPosters()
     </ul>
     </div><!--/.well -->
 </div><!--/span-->
 
 <!--The sidebar -->
-<div class="span2 fullscreen visible-phone">
-    <div class="well sidebar-nav ">
+<div class="span12 visible-phone container-fluid">
+    <div class="well sidebar-nav span6">
     <ul class="nav nav-list">
         @MenuItems()     
+    </ul>
+    </div><!--/.well -->
+    
+    <div class="well sidebar-nav span6">
+    <ul class="nav nav-list">
+        @MenuItemsPosters()   
     </ul>
     </div><!--/.well -->
 </div><!--/span-->

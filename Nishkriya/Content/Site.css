@@ -97,3 +97,8 @@ padding: 9px 0;
     width: 100% !important;
 } 
 
+@media (max-width: 767px) {
+  .span12-phone {
+    width: 100% !important;
+  }
+}
