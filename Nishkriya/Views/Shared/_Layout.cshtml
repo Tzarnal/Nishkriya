@@ -20,7 +20,7 @@
 
                <!-- Main Page Element -->
                 <div class="span10 span12-phone">
-                @if( !User.Identity.IsAuthenticated)
+                @if(!User.Identity.IsAuthenticated)
                 {
                     if (ViewBag.Title != "Login")
                     {

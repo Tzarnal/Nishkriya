@@ -7,7 +7,11 @@
 <h2>Posts by: @Model.Name</h2>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @if(User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Edit", "Edit", new {id = Model.Id});       
+        @Html.Raw(" | ")
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>
 
