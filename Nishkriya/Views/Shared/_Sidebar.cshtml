@@ -18,7 +18,7 @@
 @helper MenuItemsPosters()
 {
         <li class="nav-header">Posters</li>
-        foreach(var account in Model.accountList)
+        foreach(var account in Model.accountList.OrderBy( a => a.Name))
         {
             <li class="@(ViewBag.selectedSidebarEntry == @account.Name ? "active":"")"> @Html.ActionLink(account.Name, "Details","Accounts", new{id = account.Id}, new {}) </li>
         }
