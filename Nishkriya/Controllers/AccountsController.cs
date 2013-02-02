@@ -15,7 +15,14 @@ namespace Nishkriya.Controllers
         public ActionResult Index()
         {
             ViewBag.selectedSidebarEntry = "Posters";
-            return View(db.Accounts.ToList());
+            if(User.Identity.IsAuthenticated)
+            {
+                ViewBag.Title = "Edit Posters";
+                return View(db.Accounts.ToList());    
+            }
+
+            ViewBag.Title = "Posters";
+            return View("FancyIndex", db.Accounts.ToList());
         }
 
         //

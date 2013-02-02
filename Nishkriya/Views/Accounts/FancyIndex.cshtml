@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Nishkriya.Models.ForumAccount>
+
+<h2>Posters</h2>
+
+@foreach(var poster in @Model.OrderByDescending( p => p.Posts.Max( post => post.PostDate)))
+{
+    <div class="span4">
+        <h2>@Html.ActionLink(poster.Name,"Details", new { id=poster.Id })</h2>
+        <ul>
+            <li>Posts: @poster.Posts.Count</li>
+            @{
+                var firstOrDefault = poster.Posts.OrderByDescending(p => p.PostDate).FirstOrDefault();
+            }
+            @if (firstOrDefault != null)
+            {
+                <li>Last Post: @firstOrDefault.TimeSincePost()</li>
+            }            
+        </ul>
+    </div>
+}
