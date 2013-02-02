@@ -18,13 +18,17 @@
             
               @Html.Action("_Sidebar","Shared", new {selected = ViewBag.selectedSidebarEntry})
 
-              <!-- Main Page Element -->
-              <div class="span10 span12-phone">
-                @if (ViewBag.Title != "Login")
+               <!-- Main Page Element -->
+                <div class="span10 span12-phone">
+                @if( !User.Identity.IsAuthenticated)
                 {
-                    @Html.Partial("_Login", new AuthenticationViewModel())
+                    if (ViewBag.Title != "Login")
+                    {
+                        @Html.Partial("_Login", new AuthenticationViewModel())
+                    }
                 }
-                 @RenderBody()
+
+              @RenderBody()
               </div><!--/span-->
           
           </div><!--/row-->
