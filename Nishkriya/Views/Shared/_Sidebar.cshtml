@@ -6,8 +6,8 @@
         <li class="nav-header">Home</li>
         <li class="@(ViewBag.selectedSidebarEntry == "Latest Topics" ? "active":"")">@Html.ActionLink("Latest Topics","LatestTopics","Threads")</li>
         <li class="@(ViewBag.selectedSidebarEntry == "Latest Posts" ? "active":"")">@Html.ActionLink("Latest Posts","LatestPosts","Posts")</li>
-        <li class="@(ViewBag.selectedSidebarEntry == "About" ? "active":"")"><a href="#">About</a></li>
-        <li class="@(ViewBag.selectedSidebarEntry == "Contact" ? "active":"")"><a href="#">Contact</a></li>
+        <li class="@(ViewBag.selectedSidebarEntry == "About" ? "active":"")">@Html.ActionLink("About","About","Home")</li>
+        <li class="@(ViewBag.selectedSidebarEntry == "Contact" ? "active":"")">@Html.ActionLink("Contact","Contact","Home")</li>
                   
         <li class="nav-header">View</li>
         <li class="@(ViewBag.selectedSidebarEntry == "All Topics" ? "active":"")">@Html.ActionLink("All Topics","Index","Threads")</li>
