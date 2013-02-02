@@ -11,7 +11,23 @@ namespace Nishkriya.Controllers
 
         public ActionResult Index()
         {
-            return RedirectToAction("LatestPosts", "Posts");
+            return RedirectToAction("LatestTopics", "Threads");
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.selectedSidebarEntry = "About";
+            ViewBag.Title = "About";
+                 
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.selectedSidebarEntry = "Contact";
+            ViewBag.Title = "Contact";
+
+            return View();
         }
 
         [HttpGet]
