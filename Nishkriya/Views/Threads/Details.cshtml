@@ -1,6 +1,6 @@
 ﻿@model Nishkriya.Models.Thread
 
-<h2><a href="@Model.Url">@Model.Title</a></h2>
+<h2><a href="@Model.Url">@Html.Raw(Model.Title)</a></h2>
 
 @foreach (var post in @Model.Posts.OrderBy(p => p.PostDate) )
 {   

@@ -2,7 +2,7 @@
 @model Nishkriya.Models.Post
 
     <div class="developer-container">
-        <h3>@Html.ActionLink(@Model.Thread.Title, "Details","Threads", new{id = @Model.Thread.ThreadId}, new {})</h3>
+        <h3><a href="@Url.Action("Details","Threads", new{id = @Model.Thread.ThreadId})">@Html.Raw(Model.Thread.Title)</a></h3>
         <h5 class="post-subheader">[@Html.ActionLink("#","Details","Posts", new{id = @Model.Id}, new{})][<a title="Link to this thread on the forums" href="@Model.Thread.Url">F</a>] @Model.ForumAccount.Name - @Model.TimeSincePost()</h5>
         
         <div class="developer-quote">

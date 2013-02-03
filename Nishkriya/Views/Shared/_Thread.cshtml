@@ -1,7 +1,7 @@
 ﻿@model Nishkriya.Models.Thread
 
 <tr>
-    <td>@Html.ActionLink(@Model.Title,"Details","Threads",new{id = @Model.ThreadId}, new {})</td>
+    <td><a href="@Url.Action("Details","Threads", new{id = @Model.ThreadId})">@Html.Raw(Model.Title)</a></td>
     <td>@Model.Posts.Count() </td>
     <td>@Model.Posts.OrderBy(p => p.PostDate).Last().TimeSincePost()  </td>
     <td>@Model.Posts.OrderBy(p => p.PostDate).Last().ForumAccount.Name  </td>
