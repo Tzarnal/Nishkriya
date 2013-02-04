@@ -4,6 +4,7 @@
 @helper MenuItems()
 {
         <li class="nav-header">Home</li>
+        <li class="@(ViewBag.selectedSidebarEntry == "New Content" ? "active":"")">@Html.ActionLink("New Content","Index","Home")</li>
         <li class="@(ViewBag.selectedSidebarEntry == "Latest Topics" ? "active":"")">@Html.ActionLink("Latest Topics","LatestTopics","Threads")</li>
         <li class="@(ViewBag.selectedSidebarEntry == "Latest Posts" ? "active":"")">@Html.ActionLink("Latest Posts","LatestPosts","Posts")</li>
         <li class="@(ViewBag.selectedSidebarEntry == "About" ? "active":"")">@Html.ActionLink("About","About","Home")</li>
