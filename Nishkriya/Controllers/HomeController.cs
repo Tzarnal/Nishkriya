@@ -40,6 +40,10 @@ namespace Nishkriya.Controllers
 
             var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate)).Where(thread => thread.Posts.Max(post => post.PostDate) > sessionTimeSinceLastVisit);
 
+            if(!threads.Any())
+            {
+                return View("NoNewContent");
+            }
             return View(threads);
         }
 
