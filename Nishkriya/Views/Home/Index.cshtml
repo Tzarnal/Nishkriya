@@ -1,1 +1,20 @@
-﻿@model dynamic
+﻿@model IEnumerable<Nishkriya.Models.Thread>
+
+<h2>New Content</h2>
+
+
+@foreach (var thread in @Model)
+{
+    <h3><a href="@thread.Url">@Html.Raw(thread.Title)</a></h3>
+        
+    foreach (var post in thread.Posts.OrderBy(p => p.PostDate).Where(p => p.PostDate > ViewBag.SessionTimeSinceLastVisit))
+    {
+        <div class="developer-container">        
+            <h5>@post.ForumAccount.Name - @post.TimeSincePost()</h5>
+        
+            <div class="developer-quote">
+                @Html.Raw(post.Content)
+            </div>
+        </div>           
+        }
+}
