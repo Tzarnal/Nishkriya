@@ -17,6 +17,8 @@ namespace Nishkriya.Controllers
 
         public ActionResult Login()
         {
+            ViewBag.Title = "Login";
+            ViewBag.selectedSidebarEntry = "Login";
             return View(new AuthenticationViewModel());
         }
 
