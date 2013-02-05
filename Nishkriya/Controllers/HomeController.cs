@@ -12,16 +12,14 @@ namespace Nishkriya.Controllers
 
         public ActionResult Index()
         {
-            DateTime timeSinceLastVisit;
             DateTime sessionTimeSinceLastVisit;
+            DateTime timeSinceLastVisit = Request.Cookies["TimeSinceLastVisit"] != null ? DateTime.Parse(Request.Cookies["TimeSinceLastVisit"].Value) : DateTime.UtcNow.AddHours(-8);
 
             //If there is a timeSinceLastVisit cookie then store that value in a session cookie and use that to display new content
             //If there isn't use the last 8 hours. 
             //Always update the TimesinceLastVisit cookie so the last visit is accurate
             //Keep the session cookie the same if it already exists
-            
-            timeSinceLastVisit = Request.Cookies["TimeSinceLastVisit"] != null ? DateTime.Parse(Request.Cookies["TimeSinceLastVisit"].Value) : DateTime.UtcNow.AddHours(-8);
-
+                       
             if (Request.Cookies["SessionTimeSinceLastVisit"] != null)
             {
                 sessionTimeSinceLastVisit = DateTime.Parse(Request.Cookies["SessionTimeSinceLastVisit"].Value);
@@ -72,16 +70,16 @@ namespace Nishkriya.Controllers
 
         private HttpCookie TimeSinceLastVisitCookie()
         {
-            var cookie = new HttpCookie("TimeSinceLastVisit", DateTime.UtcNow.ToString() );
-            cookie.Expires = DateTime.Now.AddDays(30);
+            var cookie = new HttpCookie("TimeSinceLastVisit", DateTime.UtcNow.ToString() )
+                             {Expires = DateTime.Now.AddDays(30)};
 
             return cookie;
         }
 
         private HttpCookie SessionTimeSinceLastVisitCookie(DateTime lastVisit)
         {
-            var cookie = new HttpCookie("SessionTimeSinceLastVisit", lastVisit.ToString() );
-            cookie.Expires = DateTime.MinValue;
+            var cookie = new HttpCookie("SessionTimeSinceLastVisit", lastVisit.ToString() )
+                             {Expires = DateTime.MinValue};
 
             return cookie;
         }
