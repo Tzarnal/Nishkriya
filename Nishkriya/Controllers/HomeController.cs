@@ -45,6 +45,15 @@ namespace Nishkriya.Controllers
             return View(threads);
         }
 
+        public ActionResult MarkAsRead()
+        {
+            Response.Cookies.Add(TimeSinceLastVisitCookie());
+            Response.Cookies.Add(SessionTimeSinceLastVisitCookie(DateTime.UtcNow));
+            
+            Response.Redirect(Url.Action("Index"));
+            return View("NoNewContent");
+        }
+
         public ActionResult About()
         {
             ViewBag.selectedSidebarEntry = "About";
