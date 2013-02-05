@@ -32,6 +32,7 @@ namespace Nishkriya.Controllers
 
             Response.Cookies.Add(TimeSinceLastVisitCookie());
 
+            ViewBag.HideExplanation = (Request.Cookies["LatestPostsExplanationDismissed"] != null);
             ViewBag.Title = "New Content";
             ViewBag.selectedSidebarEntry = "New Content";
             ViewBag.SessionTimeSinceLastVisit = sessionTimeSinceLastVisit;
@@ -50,6 +51,14 @@ namespace Nishkriya.Controllers
             Response.Cookies.Add(TimeSinceLastVisitCookie());
             Response.Cookies.Add(SessionTimeSinceLastVisitCookie(DateTime.UtcNow));
             
+            Response.Redirect(Url.Action("Index"));
+            return View("NoNewContent");
+        }
+
+        public ActionResult DismissExplanation()
+        {
+            Response.Cookies.Add(ExplanationDismissedCookie());
+
             Response.Redirect(Url.Action("Index"));
             return View("NoNewContent");
         }
@@ -89,6 +98,14 @@ namespace Nishkriya.Controllers
         {
             var cookie = new HttpCookie("SessionTimeSinceLastVisit", lastVisit.ToString() )
                              {Expires = DateTime.MinValue};
+
+            return cookie;
+        }
+
+        private HttpCookie ExplanationDismissedCookie()
+        {
+            var cookie = new HttpCookie("LatestPostsExplanationDismissed", "true")
+                             {Expires = DateTime.MaxValue};
 
             return cookie;
         }

@@ -1,6 +1,26 @@
 ﻿@model IEnumerable<Nishkriya.Models.Thread>
 
 <h2>New Content</h2>
+
+@if(!ViewBag.HideExplanation)
+{
+    <div class="hero-unit">
+        <p>
+            This page displays posts made since you last visited (where "last visited" is determined by your browser).
+            If this is the first time you've been here we've taken the liberty of showing you posts made in the last 8 hours. <br/>
+            You can use the "Mark all as Read" button to tell Nishkriya you've read all the posts on the page right now and Nishkriya won't show them on New Content anymore.<br/><br/>
+        
+            Click below to dismiss this message
+        </p>
+        <p>
+            <a class="btn btn-primary" href="@Url.Action("DismissExplanation")">
+                Got It
+            </a>        
+        </p>            
+    </div>    
+}
+
+
 <p>
     <a class="btn" href="@Url.Action("MarkAsRead")">
         Mark all as Read
@@ -30,4 +50,3 @@
         Mark all as Read
     </a>
 </p>
-s
