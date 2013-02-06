@@ -87,7 +87,7 @@ padding: 9px 0;
     display: block;
 }
 
-.spoilerbox img:hover {
+.spoilerbox:hover img {
     visibility: visible;
 }
 
