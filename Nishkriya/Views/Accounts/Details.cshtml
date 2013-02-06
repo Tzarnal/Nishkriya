@@ -1,23 +1,22 @@
-﻿@model Nishkriya.Models.ForumAccount
+﻿@using System.Web.UI.WebControls
+@model IEnumerable<Nishkriya.Models.Post>
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Posts by: @Model.Name</h2>
+<h2>Posts by: @ViewBag.Title</h2>
 
 <p>
     @if(User.Identity.IsAuthenticated)
     {
-        @Html.ActionLink("Edit", "Edit", new {id = Model.Id});       
+        @Html.ActionLink("Edit", "Edit", new {id = ViewBag.AccountId});       
         @Html.Raw(" | ")
     }
     @Html.ActionLink("Back to List", "Index")
 </p>
 
 <div>
-    @foreach (var post in Model.Posts.OrderByDescending(p => p.PostDate))
+    @foreach (var post in Model.OrderByDescending(p => p.PostDate))
     {
         @Html.Partial("_Post", post)
     }
 </div>
+
+@Html.Partial("_Paginator",(Nishkriya.Models.ViewModels.PaginatorViewModel) ViewBag.Paginator)

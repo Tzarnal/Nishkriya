@@ -1,7 +1,10 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using Nishkriya.Models;
+using Nishkriya.Models.ViewModels;
+using Nishkriya.Properties;
 
 namespace Nishkriya.Controllers
 {
@@ -28,15 +31,33 @@ namespace Nishkriya.Controllers
         //
         // GET: /ForumAccounts/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(int id = 0, int page = 0)
         {
             ForumAccount forumaccount = db.Accounts.Find(id);
+            
             if (forumaccount == null)
             {
                 return HttpNotFound();
             }
+
+            var pageSize = Settings.Default.PageSize;
+            var posts = forumaccount.Posts.OrderByDescending(p => p.PostDate);
+
+            var totalPages = (int) Math.Ceiling(posts.Count()/(float) pageSize);
+            if (totalPages == 0)
+                totalPages = 1;
+
+            if (page == 0)
+                page = 1;
+
+            ViewBag.AccountId = forumaccount.Id;
+            ViewBag.Title = forumaccount.Name;
             ViewBag.selectedSidebarEntry = forumaccount.Name;
-            return View(forumaccount);
+            ViewBag.Paginator = new PaginatorViewModel { PageIndex = page, TotalPages = totalPages, MaximumSpread = 3, Action = "Details", Controller = "Accounts",ContentId = id};
+
+            var selectedPosts = posts.Skip((page - 1)*pageSize).Take(pageSize).OrderByDescending(p => p.PostDate);
+
+            return View(selectedPosts);
         }
 
         //public ActionResult Details(string name)
