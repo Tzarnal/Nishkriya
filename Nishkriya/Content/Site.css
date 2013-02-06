@@ -77,10 +77,18 @@ padding: 9px 0;
     display: block;
 }
 
+.spoilerbox img {
+    visibility: hidden;
+}
+
 .spoilerbox:hover {
     background:transparent;
     color: rgb(51, 51, 51);
     display: block;
+}
+
+.spoilerbox img:hover {
+    visibility: visible;
 }
 
 .top-bar-login {
