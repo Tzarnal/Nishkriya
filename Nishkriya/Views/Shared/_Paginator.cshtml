@@ -8,7 +8,7 @@
     }
     else
     {
-        @Html.ActionLink(linkText, @Model.Action, @Model.Controller, new { id = @Model.PageIndex, Page = page }, new { });
+        @Html.ActionLink(linkText, @Model.Action, @Model.Controller, new { id = @Model.ContentId, Page = page }, new { });
     }    
 }
 
