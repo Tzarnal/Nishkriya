@@ -13,5 +13,6 @@ namespace Nishkriya.Models.ViewModels
         
         public string Action { get; set; } //Controller for generated links
         public string Controller { get; set; } //Action for generated links
+        public int? ContentId { get; set; } //Optional Id 
     }
 }
