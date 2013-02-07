@@ -184,6 +184,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\docs.css" />
     <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="favicon.ico" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Global.asax" />
