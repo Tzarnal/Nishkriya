@@ -7,9 +7,8 @@
     <title>Nishkriya - @ViewBag.Title</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/Content/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="~/Content/Site.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    
 </head>
 <body>
     <div class="container-fluid">
@@ -39,8 +38,8 @@
 
         </div> 
     
-        @Scripts.Render("~/bundles/jquery")
-        <script src="/Scripts/bootstrap.min.js"></script>
+        @Scripts.Render("~/bundles/scripts")
+    
         @RenderSection("scripts", required: false)
 </body>
 </html>
