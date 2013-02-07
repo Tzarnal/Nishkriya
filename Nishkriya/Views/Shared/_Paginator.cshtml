@@ -1,4 +1,5 @@
-﻿@model Nishkriya.Models.ViewModels.PaginatorViewModel
+﻿@using System.Globalization
+@model Nishkriya.Models.ViewModels.PaginatorViewModel
 
 @helper PaginationLink(string linkText,int page)
 {
@@ -20,8 +21,11 @@
             
             @if(@Model.PageIndex - 1 > 0)
             {
-                <li class="">@PaginationLink("<",@Model.PageIndex -1)</li>            
-            }else
+                <li class="">
+                    @PaginationLink("<",@Model.PageIndex -1)
+                </li>            
+            } 
+            else 
             {
                 <li class="disabled"><a href="#"><</a></li>
             }
@@ -30,24 +34,31 @@
             {
                 if (i > 0)
                 {
-                    <li>@PaginationLink(@i.ToString(),@i)</li>
+                    <li>
+                        @PaginationLink(@i.ToString(CultureInfo.InvariantCulture),@i)
+                    </li>
                 }
             }
             
-            <li class="active">@PaginationLink(@Model.PageIndex.ToString(), @Model.PageIndex)</li>            
+            <li class="active">@PaginationLink(@Model.PageIndex.ToString(CultureInfo.InvariantCulture), @Model.PageIndex)</li>            
 
             @for (int i = @Model.PageIndex + 1; i <= @Model.PageIndex + @Model.MaximumSpread; i++)
             {
                 if (i <= @Model.TotalPages)
                 {
-                    <li>@PaginationLink(@i.ToString(),@i)</li>
+                    <li>
+                        @PaginationLink(@i.ToString(CultureInfo.InvariantCulture),@i)
+                    </li>
                 }
             }
 
             @if(@Model.PageIndex < @Model.TotalPages)
             {
-                <li class="">@PaginationLink(">",@Model.PageIndex + 1)</li>            
-            }else
+                <li class="">
+                    @PaginationLink(">",@Model.PageIndex + 1)
+                </li>            
+            } 
+            else 
             {
                 <li class="disabled"><a href="#">></a></li>
             }

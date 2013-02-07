@@ -12,7 +12,7 @@ namespace Nishkriya.Controllers
         public ActionResult _Sidebar(dynamic selected)
         {
             ViewBag.selectedSidebarEntry = selected;
-            return PartialView(new SidebarViewModel{selectedSidebarEntry = selected, accountList = db.Accounts.ToList()});
+            return PartialView(new SidebarViewModel { selectedSidebarEntry = selected, accountList = db.Accounts.ToList() });
         }
 
     }

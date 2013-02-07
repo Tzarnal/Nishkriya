@@ -53,28 +53,21 @@ namespace Nishkriya.Controllers
             ViewBag.AccountId = forumaccount.Id;
             ViewBag.Title = forumaccount.Name;
             ViewBag.selectedSidebarEntry = forumaccount.Name;
-            ViewBag.Paginator = new PaginatorViewModel { PageIndex = page, TotalPages = totalPages, MaximumSpread = 3, Action = "Details", Controller = "Accounts",ContentId = id};
+
+            ViewBag.Paginator = new PaginatorViewModel
+                {
+                    PageIndex = page,
+                    TotalPages = totalPages,
+                    MaximumSpread = 3,
+                    Action = "Details",
+                    Controller = "Accounts",
+                    ContentId = id
+                };
 
             var selectedPosts = posts.Skip((page - 1)*pageSize).Take(pageSize).OrderByDescending(p => p.PostDate);
 
             return View(selectedPosts);
         }
-
-        //public ActionResult Details(string name)
-        //{
-        //    if (name == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    var account = db.Accounts.SingleOrDefault(a => a.Name.ToUpper() == name.ToUpper());
-
-        //    if (account == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    return View(account);
-        //}
 
         //
         // GET: /ForumAccounts/Create

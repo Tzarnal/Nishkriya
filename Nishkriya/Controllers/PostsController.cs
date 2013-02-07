@@ -22,15 +22,17 @@ namespace Nishkriya.Controllers
             var posts = db.Posts.OrderByDescending(p => p.PostDate);
             
             var totalPages = (int)Math.Ceiling(posts.Count() / (float)pageSize);
-            if (totalPages == 0)
-                totalPages = 1;
-            
-            if (id == 0)
-                id = 1;
 
             ViewBag.Title = "All Posts";
             ViewBag.selectedSidebarEntry = "All Posts";
-            ViewBag.Paginator = new PaginatorViewModel { PageIndex = id, TotalPages = totalPages, MaximumSpread = 3, Action = "Page", Controller = "Posts" };
+            ViewBag.Paginator = new PaginatorViewModel
+                {
+                    PageIndex = id == 0 ? 1 : id,
+                    TotalPages = totalPages == 0 ? 1 : totalPages,
+                    MaximumSpread = 3,
+                    Action = "Page",
+                    Controller = "Posts"
+                };
 
             var selectedPosts = posts.Skip((id - 1)*pageSize).Take(pageSize).OrderByDescending(p => p.PostDate);
             return View("Page",selectedPosts);

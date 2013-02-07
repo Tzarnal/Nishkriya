@@ -22,15 +22,17 @@ namespace Nishkriya.Controllers
             var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate));
 
             var totalPages = (int) Math.Ceiling(threads.Count()/(float) pageSize);
-            if (totalPages == 0)
-                totalPages = 1;
-            
-            if (id == 0)
-                id = 1;
 
             ViewBag.Title = "All Topics";
             ViewBag.selectedSidebarEntry = "All Topics";
-            ViewBag.Paginator = new PaginatorViewModel {PageIndex = id,TotalPages = totalPages, MaximumSpread = 3,Action = "Page",Controller = "Threads"};
+            ViewBag.Paginator = new PaginatorViewModel
+                {
+                    PageIndex = id == 0 ? 1 : id,
+                    TotalPages = totalPages == 0 ? 1 : totalPages,
+                    MaximumSpread = 3,
+                    Action = "Page",
+                    Controller = "Threads"
+                };
  
             var selectedTheads = threads.Skip((id - 1) * pageSize).Take(pageSize).OrderByDescending(thread => thread.Posts.Max(post => post.PostDate));
             
