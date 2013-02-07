@@ -49,7 +49,9 @@ namespace Nishkriya.Controllers
         public ActionResult Details(int id)
         {
             var post = db.Posts.FirstOrDefault(p => p.Id == id);
-            
+
+            ViewBag.Title = "Specific Post";
+
             return View(post);
         }
     }
