@@ -18,6 +18,7 @@
                     @Html.Action("_SidebarPosters","Shared", new {selected = ViewBag.selectedSidebarEntry})
                 </div>                      
             </div>
+            @RenderSection("phoneMenu", false)
         </div>
         
         <div class="container-fluid">
@@ -29,6 +30,7 @@
                             @Html.Action("_SidebarPosters","Shared", new {selected = ViewBag.selectedSidebarEntry})
                         </ul>
                     </div>
+                    @RenderSection("desktopMenu", false)
                 </div>                
                 <div class="span10 span12-phone">                    
                     @RenderBody()
@@ -46,6 +48,6 @@
         </footer>
 
         @Scripts.Render("~/bundles/scripts")
-        @RenderSection("scripts", required: false)
+        @RenderSection("scripts", false)
     </body>
 </html>
