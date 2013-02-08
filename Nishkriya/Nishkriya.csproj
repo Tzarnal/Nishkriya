@@ -193,6 +193,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="App_Code\SideBarHelpers.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -209,6 +210,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Accounts\FancyIndex.cshtml" />
     <Content Include="Views\Home\NoNewContent.cshtml" />
+    <Content Include="Views\Shared\_SidebarPosters.cshtml" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>
@@ -229,7 +231,7 @@
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Delete.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\_SidebarHome.cshtml" />
     <Content Include="Views\Shared\_Post.cshtml" />
     <Content Include="Views\Threads\Page.cshtml" />
     <Content Include="Views\Threads\LatestTopics.cshtml" />

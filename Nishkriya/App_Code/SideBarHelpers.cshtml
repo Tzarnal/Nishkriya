@@ -1,0 +1,31 @@
+﻿@using System.Web.Mvc.Html
+@using Nishkriya.Models.ViewModels
+
+@helper MenuItems(SidebarViewModel sidebarModel)
+{
+        var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;  
+        
+        <li class="nav-header">Home</li>
+        <li class="@(sidebarModel.selectedSidebarEntry == "New Content" ? "active":"")">@Html.ActionLink("New Content","Index","Home")</li>
+        <li class="@(sidebarModel.selectedSidebarEntry == "Latest Topics" ? "active":"")">@Html.ActionLink("Latest Topics","LatestTopics","Threads")</li>
+        <li class="@(sidebarModel.selectedSidebarEntry == "Latest Posts" ? "active":"")">@Html.ActionLink("Latest Posts","LatestPosts","Posts")</li>
+        <li class="@(sidebarModel.selectedSidebarEntry == "About" ? "active":"")">@Html.ActionLink("About","About","Home")</li>
+        <li class="@(sidebarModel.selectedSidebarEntry == "Contact" ? "active":"")">@Html.ActionLink("Contact","Contact","Home")</li>
+        <li class="@(sidebarModel.selectedSidebarEntry == "Login" ? "active":"")">@Html.ActionLink("Login","Login","Users")</li>
+                      
+        <li class="nav-header">View</li>
+        <li class="@(sidebarModel.selectedSidebarEntry == "All Topics" ? "active":"")">@Html.ActionLink("All Topics","Index","Threads")</li>
+        <li class="@(sidebarModel.selectedSidebarEntry == "All Posts" ? "active":"")">@Html.ActionLink("All Posts","Index","Posts")</li>
+        <li class="@(sidebarModel.selectedSidebarEntry == "Posters" ? "active":"")">@Html.ActionLink("Posters","Index","Accounts")</li>
+}
+
+@helper MenuItemsPosters(SidebarViewModel sidebarModel)
+{
+        var Html = ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;      
+        
+        <li class="nav-header">Posters</li>
+    foreach (var account in sidebarModel.accountList.OrderBy(a => a.Name))
+        {
+            <li class="@(sidebarModel.selectedSidebarEntry == @account.Name ? "active":"")"> @Html.ActionLink(account.Name, "Details","Accounts", new{id = account.Id}, new {}) </li>
+        }
+}

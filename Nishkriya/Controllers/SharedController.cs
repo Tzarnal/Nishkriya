@@ -9,11 +9,16 @@ namespace Nishkriya.Controllers
     {
         NishkriyaContext db = new NishkriyaContext();
 
-        public ActionResult _Sidebar(dynamic selected)
+        public ActionResult _SidebarHome(dynamic selected)
         {
             ViewBag.selectedSidebarEntry = selected;
             return PartialView(new SidebarViewModel { selectedSidebarEntry = selected, accountList = db.Accounts.ToList() });
         }
 
+        public ActionResult _SidebarPosters(dynamic selected)
+        {
+            ViewBag.selectedSidebarEntry = selected;
+            return PartialView(new SidebarViewModel { selectedSidebarEntry = selected, accountList = db.Accounts.ToList() });
+        }
     }
 }

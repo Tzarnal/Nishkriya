@@ -2,29 +2,49 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
         <title>Nishkriya - @ViewBag.Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @Styles.Render("~/bundles/css")
     </head>
     <body>
+        <div class="container visible-phone">
+            <div class="pull-left">
+                <div class="well sidebar-nav">
+                    @Html.Action("_SidebarHome","Shared", new {selected = ViewBag.selectedSidebarEntry})
+                </div>                      
+            </div>
+            <div class="pull-right">
+                <div class="well sidebar-nav">
+                    @Html.Action("_SidebarPosters","Shared", new {selected = ViewBag.selectedSidebarEntry})
+                </div>                      
+            </div>
+        </div>
+        
         <div class="container-fluid">
-            <div class="row-fluid">
-                @Html.Action("_Sidebar","Shared", new {selected = ViewBag.selectedSidebarEntry})
-                <div class="span10 span12-phone">
+            <div class="row-fluid">                
+                <div class="span3 visible-desktop visible-tablet">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            @Html.Action("_SidebarHome","Shared", new {selected = ViewBag.selectedSidebarEntry})   
+                            @Html.Action("_SidebarPosters","Shared", new {selected = ViewBag.selectedSidebarEntry})
+                        </ul>
+                    </div>
+                </div>                
+                <div class="span9 span12-phone">                    
                     @RenderBody()
                 </div>
             </div>
-              <hr>
-              <footer>
-                  <p>
-                      You can find this project and report issues <a href="https://github.com/Xesyto/Nishkriya">on github</a>. <br />              
-                      <a href="https://twitter.com/MoonWolfCrn">@@MoonWolfCrn</a> <a href="https://twitter.com/ProNihilist">@@ProNihilist</a> <br />
-                      &copy; 2013
-                  </p>
-              </footer>
-            </div> 
-            @Scripts.Render("~/bundles/scripts")
-            @RenderSection("scripts", required: false)
+        </div>
+
+        <hr>
+        <footer>
+            <p>
+                You can find this project and report issues <a href="https://github.com/Xesyto/Nishkriya">on github</a>. <br />              
+                <a href="https://twitter.com/MoonWolfCrn">@@MoonWolfCrn</a> <a href="https://twitter.com/ProNihilist">@@ProNihilist</a> <br />
+                &copy; 2013
+            </p>
+        </footer>
+        @Scripts.Render("~/bundles/scripts")
+        @RenderSection("scripts", required: false)
     </body>
 </html>
