@@ -8,12 +8,12 @@
     </head>
     <body>
         <div class="container visible-phone">
-            <div class="pull-left">
+            <div class="pull-left PhonePadding">
                 <div class="well sidebar-nav">
                     @Html.Action("_SidebarHome","Shared", new {selected = ViewBag.selectedSidebarEntry})
                 </div>                      
             </div>
-            <div class="pull-right">
+            <div class="pull-left PhonePadding">
                 <div class="well sidebar-nav">
                     @Html.Action("_SidebarPosters","Shared", new {selected = ViewBag.selectedSidebarEntry})
                 </div>                      
@@ -44,6 +44,7 @@
                 &copy; 2013
             </p>
         </footer>
+
         @Scripts.Render("~/bundles/scripts")
         @RenderSection("scripts", required: false)
     </body>

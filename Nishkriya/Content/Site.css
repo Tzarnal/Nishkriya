@@ -113,6 +113,11 @@ padding: 9px 0;
     width: 100% !important;
 } 
 
+.PhonePadding {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 @media (max-width: 767px) {
   .span12-phone {
     width: 100% !important;
