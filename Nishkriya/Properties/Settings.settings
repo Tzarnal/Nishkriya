@@ -14,8 +14,11 @@
     <Setting Name="SecretAnswer" Type="System.String" Scope="Application">
       <Value Profile="(Default)">scarlet-empress</Value>
     </Setting>
-    <Setting Name="PageSize" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">20</Value>
+    <Setting Name="PostsPerPage" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="ThreadsPerPage" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">25</Value>
     </Setting>
   </Settings>
 </SettingsFile>

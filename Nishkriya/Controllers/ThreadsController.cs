@@ -18,7 +18,7 @@ namespace Nishkriya.Controllers
 
         public ActionResult Page(int id=1)
         {
-            var pageSize = Settings.Default.PageSize;
+            var pageSize = Settings.Default.ThreadsPerPage;
             var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate));
 
             var totalPages = (int) Math.Ceiling(threads.Count()/(float) pageSize);

@@ -40,7 +40,7 @@ namespace Nishkriya.Controllers
                 return HttpNotFound();
             }
 
-            var pageSize = Settings.Default.PageSize;
+            var pageSize = Settings.Default.PostsPerPage;
             var posts = forumaccount.Posts.OrderByDescending(p => p.PostDate);
 
             var totalPages = (int) Math.Ceiling(posts.Count()/(float) pageSize);

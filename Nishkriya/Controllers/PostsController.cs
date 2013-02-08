@@ -18,7 +18,7 @@ namespace Nishkriya.Controllers
 
         public ActionResult Page(int id = 1)
         {
-            var pageSize = Settings.Default.PageSize;
+            var pageSize = Settings.Default.PostsPerPage;
             var posts = db.Posts.OrderByDescending(p => p.PostDate);
             
             var totalPages = (int)Math.Ceiling(posts.Count() / (float)pageSize);
