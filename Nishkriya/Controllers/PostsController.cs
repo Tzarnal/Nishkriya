@@ -16,7 +16,7 @@ namespace Nishkriya.Controllers
             return Page();
         }
 
-        public ActionResult Page(int id = 0)
+        public ActionResult Page(int id = 1)
         {
             var pageSize = Settings.Default.PageSize;
             var posts = db.Posts.OrderByDescending(p => p.PostDate);
@@ -27,7 +27,7 @@ namespace Nishkriya.Controllers
             ViewBag.selectedSidebarEntry = "All Posts";
             ViewBag.Paginator = new PaginatorViewModel
                 {
-                    PageIndex = id == 0 ? 1 : id,
+                    PageIndex = id,
                     TotalPages = totalPages == 0 ? 1 : totalPages,
                     MaximumSpread = 3,
                     Action = "Page",

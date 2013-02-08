@@ -16,18 +16,19 @@ namespace Nishkriya.Controllers
             return Page();
         }
 
-        public ActionResult Page(int id=0)
+        public ActionResult Page(int id=1)
         {
             var pageSize = Settings.Default.PageSize;
             var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate));
 
             var totalPages = (int) Math.Ceiling(threads.Count()/(float) pageSize);
 
+
             ViewBag.Title = "All Topics";
             ViewBag.selectedSidebarEntry = "All Topics";
             ViewBag.Paginator = new PaginatorViewModel
                 {
-                    PageIndex = id == 0 ? 1 : id,
+                    PageIndex = id,
                     TotalPages = totalPages == 0 ? 1 : totalPages,
                     MaximumSpread = 3,
                     Action = "Page",
