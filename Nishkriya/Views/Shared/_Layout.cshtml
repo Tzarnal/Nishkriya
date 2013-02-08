@@ -22,7 +22,7 @@
         
         <div class="container-fluid">
             <div class="row-fluid">                
-                <div class="span3 visible-desktop visible-tablet">
+                <div class="span2 visible-desktop visible-tablet">
                     <div class="well sidebar-nav">
                         <ul class="nav nav-list">
                             @Html.Action("_SidebarHome","Shared", new {selected = ViewBag.selectedSidebarEntry})   
@@ -30,7 +30,7 @@
                         </ul>
                     </div>
                 </div>                
-                <div class="span9 span12-phone">                    
+                <div class="span10 span12-phone">                    
                     @RenderBody()
                 </div>
             </div>
