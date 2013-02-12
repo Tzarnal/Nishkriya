@@ -12,6 +12,7 @@
         <li class="@(sidebarModel.selectedSidebarEntry == "About" ? "active":"")">@Html.ActionLink("About","About","Home")</li>
         <li class="@(sidebarModel.selectedSidebarEntry == "Contact" ? "active":"")">@Html.ActionLink("Contact","Contact","Home")</li>
         <li class="@(sidebarModel.selectedSidebarEntry == "Login" ? "active":"")">@Html.ActionLink("Login","Login","Users")</li>
+        <li>@Html.ActionLink("Rss", "Feed", "Home")</li>
                       
         <li class="nav-header">View</li>
         <li class="@(sidebarModel.selectedSidebarEntry == "All Topics" ? "active":"")">@Html.ActionLink("All Topics","Index","Threads")</li>

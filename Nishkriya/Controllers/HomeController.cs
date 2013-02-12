@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Web;
 using System.Web.Mvc;
 using Nishkriya.Models;
+using Nishkriya.Results;
 
 namespace Nishkriya.Controllers
 {
     public class HomeController : Controller
     {
-        readonly NishkriyaContext db = new NishkriyaContext();
+        readonly NishkriyaContext _db = new NishkriyaContext();
 
         public ActionResult Index()
         {
@@ -37,7 +40,7 @@ namespace Nishkriya.Controllers
             ViewBag.selectedSidebarEntry = "New Content";
             ViewBag.SessionTimeSinceLastVisit = sessionTimeSinceLastVisit;
 
-            var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate)).Where(thread => thread.Posts.Max(post => post.PostDate) > sessionTimeSinceLastVisit);
+            var threads = _db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate)).Where(thread => thread.Posts.Max(post => post.PostDate) > sessionTimeSinceLastVisit);
 
             if(!threads.Any())
             {
@@ -86,21 +89,63 @@ namespace Nishkriya.Controllers
         public ActionResult Stats()
         {
             var today = DateTime.Now.Date;
-            return View(db.Stats.Where(s => s.Start > today).OrderByDescending(s => s.Start));
+            return View(_db.Stats.Where(s => s.Start > today).OrderByDescending(s => s.Start));
         }
+
+        [HttpGet]
+        public FeedResult Feed()
+        {
+            if (Request == null)
+            {
+                throw new ArgumentNullException("Request");
+            }
+
+            var cssUri = new UriBuilder(Request.Url.AbsoluteUri)
+                {
+                    // ReSharper disable Html.PathError - the bundler takes care of creating this path for us
+                    Path = Url.Content("~/bundles/css")
+                    // ReSharper restore Html.PathError
+                }.Uri;
+
+            var items = _db.Posts
+                        .OrderByDescending(p => p.PostDate)
+                        .Take(20).ToList().Select(post => new SyndicationItem(
+                        String.Format("{0} - {1} - {2}",
+                            post.ForumAccount.Name,
+                            post.Thread.Title,
+                            post.Id),
+                        String.Format("<link href='{0}' rel='stylesheet' /><br />{1}", cssUri, HttpUtility.HtmlDecode(post.Content)),
+                        new UriBuilder(Request.Url.AbsoluteUri)
+                            {
+                                Path = Url.Action("Details", "Posts", new { id = post.Id })
+                            }.Uri))
+                    .ToList();
+
+            var feed = new SyndicationFeed("Nishkriya - Latest Posts", "An Exalted developer / writer tracker", new Uri(Request.Url.AbsoluteUri), items)
+                {
+                    Language = "en-US",
+                    LastUpdatedTime = items.Max(i => i.PublishDate)
+                };
+            return new FeedResult(new Rss20FeedFormatter(feed));
+        }
+
 
         private HttpCookie TimeSinceLastVisitCookie()
         {
-            var cookie = new HttpCookie("TimeSinceLastVisit", DateTime.UtcNow.ToString() )
-                             {Expires = DateTime.Now.AddDays(30)};
+            var cookie = new HttpCookie("TimeSinceLastVisit", DateTime.UtcNow.ToString(CultureInfo.InvariantCulture))
+                {
+                    Expires = DateTime.Now.AddDays(30)
+                };
 
             return cookie;
         }
 
         private HttpCookie SessionTimeSinceLastVisitCookie(DateTime lastVisit)
         {
-            var cookie = new HttpCookie("SessionTimeSinceLastVisit", lastVisit.ToString() )
-                             {Expires = DateTime.MinValue};
+            var cookie = new HttpCookie("SessionTimeSinceLastVisit", lastVisit.ToString(CultureInfo.InvariantCulture))
+                {
+                    Expires = DateTime.MinValue
+                };
 
             return cookie;
         }
@@ -108,7 +153,9 @@ namespace Nishkriya.Controllers
         private HttpCookie ExplanationDismissedCookie()
         {
             var cookie = new HttpCookie("LatestPostsExplanationDismissed", "true")
-                             {Expires = DateTime.MaxValue};
+                {
+                    Expires = DateTime.MaxValue
+                };
 
             return cookie;
         }
