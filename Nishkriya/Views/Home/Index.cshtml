@@ -22,7 +22,7 @@
 
 
 <p>
-    <a class="btn" href="@Url.Action("MarkAsRead")">
+    <a class="btn" href="@Url.Action("MarkAsRead", new { markTime = DateTime.UtcNow})">
         Mark all as Read
     </a>
 </p>
@@ -46,7 +46,7 @@
 }
 
 <p>
-    <a class="btn" href="@Url.Action("MarkAsRead")">
+    <a class="btn" href="@Url.Action("MarkAsRead", new { markTime = DateTime.UtcNow})">
         Mark all as Read
     </a>
 </p>

@@ -46,10 +46,13 @@ namespace Nishkriya.Controllers
             return View(threads);
         }
 
-        public ActionResult MarkAsRead()
+        public ActionResult MarkAsRead(DateTime? markTime = null)
         {
+            if (markTime == null)
+                markTime = DateTime.UtcNow;
+            
             Response.Cookies.Add(TimeSinceLastVisitCookie());
-            Response.Cookies.Add(SessionTimeSinceLastVisitCookie(DateTime.UtcNow));
+            Response.Cookies.Add(SessionTimeSinceLastVisitCookie(markTime.Value));
             
             Response.Redirect(Url.Action("Index"));
             return View("NoNewContent");
