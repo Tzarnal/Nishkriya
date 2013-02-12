@@ -5,6 +5,7 @@
         <title>Nishkriya - @ViewBag.Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @Styles.Render("~/bundles/css")
+        <link rel="alternate" type="application/rss+xml" title="Nishkriya RSS" href="@Url.Action("Feed","Home")"/>
     </head>
     <body>
         <div class="container visible-phone">
