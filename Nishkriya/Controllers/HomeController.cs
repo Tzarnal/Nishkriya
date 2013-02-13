@@ -5,6 +5,7 @@ using System.ServiceModel.Syndication;
 using System.Web;
 using System.Web.Mvc;
 using Nishkriya.Models;
+using Nishkriya.Models.Builders;
 using Nishkriya.Results;
 
 namespace Nishkriya.Controllers
@@ -35,18 +36,16 @@ namespace Nishkriya.Controllers
 
             Response.Cookies.Add(TimeSinceLastVisitCookie());
 
-            ViewBag.HideExplanation = (Request.Cookies["LatestPostsExplanationDismissed"] != null);
+            var viewModel = new NewContentViewModelBuilder(_db).Build(Request.Cookies["LatestPostsExplanationDismissed"] != null, sessionTimeSinceLastVisit);            
             ViewBag.Title = "New Content";
             ViewBag.selectedSidebarEntry = "New Content";
-            ViewBag.SessionTimeSinceLastVisit = sessionTimeSinceLastVisit;
 
-            var threads = _db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate)).Where(thread => thread.Posts.Max(post => post.PostDate) > sessionTimeSinceLastVisit);
-
-            if(!threads.Any())
+            if(!viewModel.newContent)
             {
                 return View("NoNewContent");
             }
-            return View(threads);
+
+            return View(viewModel);
         }
 
         public ActionResult MarkAsRead(DateTime? markTime = null)
