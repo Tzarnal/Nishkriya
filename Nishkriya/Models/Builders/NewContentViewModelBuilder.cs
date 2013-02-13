@@ -17,7 +17,8 @@ namespace Nishkriya.Models.Builders
         {
             var newContent = new NewContentViewModel();
 
-            var threads = _db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate)).Where(thread => thread.Posts.Max(post => post.PostDate) > sessionTimeSinceLastVisit);
+            var threads = _db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate))
+                .Where(thread => thread.Posts.Max(post => post.PostDate) > sessionTimeSinceLastVisit);
             
             newContent.SessionTimeSinceLastVisit = sessionTimeSinceLastVisit;            
             newContent.HideExplanation = hideExplanation;
