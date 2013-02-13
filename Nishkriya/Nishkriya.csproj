@@ -156,6 +156,7 @@
       <DependentUpon>201301241952580_ScrapeStatistics.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Builders\NewContentViewModelBuilder.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\ForumAccount.cs" />
     <Compile Include="Models\NishkriyaContext.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Models\Thread.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModels\AuthenticationViewModel.cs" />
+    <Compile Include="Models\ViewModels\NewContentViewModel.cs" />
     <Compile Include="Models\ViewModels\NewUserViewModel.cs" />
     <Compile Include="Models\ViewModels\PaginatorViewModel.cs" />
     <Compile Include="Models\ViewModels\SidebarViewModel.cs" />

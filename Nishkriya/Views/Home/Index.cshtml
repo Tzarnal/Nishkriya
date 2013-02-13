@@ -1,8 +1,8 @@
-﻿@model IEnumerable<Nishkriya.Models.Thread>
+﻿@model Nishkriya.Models.ViewModels.NewContentViewModel
 
 <h2>New Content</h2>
 
-@if(!ViewBag.HideExplanation)
+@if(!@Model.HideExplanation)
 {
     <div class="hero-unit">
         <p>
@@ -27,13 +27,13 @@
     </a>
 </p>
 
-@foreach (var thread in @Model)
+@foreach (var thread in @Model.Threads)
 {
     <h3><a href="@thread.Url">@Html.Raw(thread.Title)</a></h3>
     
 
         
-    foreach (var post in thread.Posts.OrderBy(p => p.PostDate).Where(p => p.PostDate > ViewBag.SessionTimeSinceLastVisit))
+    foreach (var post in thread.Posts.OrderBy(p => p.PostDate))
     {
         <div class="developer-container">        
             <h5>[@Html.ActionLink("#","Details","Posts", new{id = @post.Id}, new{})] @post.ForumAccount.Name - @post.TimeSincePost()</h5>
