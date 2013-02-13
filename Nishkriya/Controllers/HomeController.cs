@@ -16,7 +16,7 @@ namespace Nishkriya.Controllers
         public ActionResult Index()
         {
             DateTime sessionTimeSinceLastVisit;
-            DateTime timeSinceLastVisit = Request.Cookies["TimeSinceLastVisit"] != null ? DateTime.Parse(Request.Cookies["TimeSinceLastVisit"].Value) : DateTime.UtcNow.AddHours(-8);
+            DateTime timeSinceLastVisit = Request.Cookies["TimeSinceLastVisit"] != null ? DateTime.Parse(Request.Cookies["TimeSinceLastVisit"].Value, CultureInfo.InvariantCulture) : DateTime.UtcNow.AddHours(-8);
 
             //If there is a timeSinceLastVisit cookie then store that value in a session cookie and use that to display new content
             //If there isn't use the last 8 hours. 
@@ -25,7 +25,7 @@ namespace Nishkriya.Controllers
                        
             if (Request.Cookies["SessionTimeSinceLastVisit"] != null)
             {
-                sessionTimeSinceLastVisit = DateTime.Parse(Request.Cookies["SessionTimeSinceLastVisit"].Value);
+                sessionTimeSinceLastVisit = DateTime.Parse(Request.Cookies["SessionTimeSinceLastVisit"].Value, CultureInfo.InvariantCulture);
             }
             else
             {
