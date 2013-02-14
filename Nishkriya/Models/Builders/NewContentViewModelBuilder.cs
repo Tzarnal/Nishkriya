@@ -23,7 +23,7 @@ namespace Nishkriya.Models.Builders
             newContent.SessionTimeSinceLastVisit = sessionTimeSinceLastVisit;            
             newContent.HideExplanation = hideExplanation;
             newContent.Threads = threads;
-            newContent.newContent = threads.Any();
+            newContent.NewContent = threads.Any();
 
             return newContent;
         }
