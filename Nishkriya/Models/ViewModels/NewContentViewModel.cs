@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+
 
 namespace Nishkriya.Models.ViewModels
 {
@@ -10,6 +9,6 @@ namespace Nishkriya.Models.ViewModels
         public IEnumerable<Thread> Threads { get; set; }
         public DateTime SessionTimeSinceLastVisit { get; set; }
         public bool HideExplanation;
-        public bool newContent;
+        public bool NewContent;
     }
 }

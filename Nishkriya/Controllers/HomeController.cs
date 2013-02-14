@@ -40,7 +40,7 @@ namespace Nishkriya.Controllers
             ViewBag.Title = "New Content";
             ViewBag.selectedSidebarEntry = "New Content";
 
-            if(!viewModel.newContent)
+            if(!viewModel.NewContent)
             {
                 return View("NoNewContent");
             }
