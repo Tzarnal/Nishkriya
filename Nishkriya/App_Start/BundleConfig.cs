@@ -9,7 +9,9 @@ namespace Nishkriya
         {
             bundles.Add(new ScriptBundle("~/bundles/scripts")
                             .Include("~/Scripts/jquery-{version}.js")
-                            .Include("~/Scripts/bootstrap.js"));
+                            .Include("~/Scripts/bootstrap.js")
+                            .Include("~/Scripts/spoiler.js")
+                            .Include("~/Scripts/site.js"));
 
             bundles.Add(new StyleBundle("~/bundles/css")
                             .Include("~/Content/css/bootstrap.css")
