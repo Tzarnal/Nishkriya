@@ -1,1 +1,0 @@
-﻿$('spoiler, .spoilerbox').spoilerAlert()
