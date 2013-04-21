@@ -20,5 +20,14 @@ namespace Nishkriya.Controllers
             ViewBag.selectedSidebarEntry = selected;
             return PartialView(new SidebarViewModel { selectedSidebarEntry = selected, accountList = db.Accounts.ToList() });
         }
+
+        public ActionResult Analytics()
+        {
+            if (Properties.Settings.Default.EnableAnalytics && !string.IsNullOrWhiteSpace(Properties.Settings.Default.GACode))
+            {
+                return PartialView("_Analytics", Properties.Settings.Default.GACode);
+            }
+            return new EmptyResult();
+        }
     }
 }

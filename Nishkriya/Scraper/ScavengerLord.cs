@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Nishkriya.Models;
@@ -107,7 +108,7 @@ namespace Nishkriya.Scraper
                         {
                             writer.Write(reader.ReadToEnd());
                             memoryStream.Position = 0;
-                            document.Load(memoryStream);
+                            document.Load(memoryStream, new UTF8Encoding());
                         }
                     }
                 }

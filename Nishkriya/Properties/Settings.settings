@@ -20,5 +20,11 @@
     <Setting Name="ThreadsPerPage" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">25</Value>
     </Setting>
+    <Setting Name="EnableAnalytics" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="GACode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

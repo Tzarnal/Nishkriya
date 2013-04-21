@@ -248,6 +248,7 @@
     <Content Include="Views\Accounts\FancyIndex.cshtml" />
     <Content Include="Views\Home\NoNewContent.cshtml" />
     <Content Include="Views\Shared\_SidebarPosters.cshtml" />
+    <Content Include="Views\Shared\_Analytics.cshtml" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>
