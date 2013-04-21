@@ -230,6 +230,7 @@
     <Content Include="App_Code\SideBarHelpers.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\nishkriya.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />

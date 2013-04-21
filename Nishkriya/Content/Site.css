@@ -102,3 +102,27 @@ footer {
     width: 100% !important;
   }
 }
+
+.spoilerText {
+    cursor: pointer;
+    color: #5f5f5f;
+    background-color: #5f5f5f;
+    max-height: 12em;
+    overflow: hidden;
+}
+
+.spoilerText:hover {
+    color: #333333;
+    background-color: #f3f3f3;
+    overflow: scroll;
+}
+
+.spoilerText .innerquote {
+    color: #5f5f5f;
+    background-color: #5f5f5f;
+}
+
+.spoilerText .innerquote:hover {
+    color: #333333;
+    background-color: #dcdcdc;
+}
