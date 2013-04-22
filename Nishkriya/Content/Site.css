@@ -133,7 +133,7 @@ footer {
 }
 
 .spoilerText:hover img {
-    visibility: hidden;
+    visibility: visible;
 }
 
 .spoilerText .innerquote {
