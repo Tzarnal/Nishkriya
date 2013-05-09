@@ -145,3 +145,15 @@ footer {
     color: #333333;
     background-color: #dcdcdc;
 }
+
+.kickstarterNav {
+    padding: 0px;
+}
+
+.kickstarterNavHeader {
+    padding: 15px;
+}
+
+.kickstarterFrame {
+    height: 380px;
+}
