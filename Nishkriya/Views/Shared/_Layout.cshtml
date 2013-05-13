@@ -28,13 +28,9 @@
                     <div class="well sidebar-nav">
                         @Html.Action("_SidebarHome","Shared", new {selected = ViewBag.selectedSidebarEntry})   
                         @Html.Action("_SidebarPosters","Shared", new {selected = ViewBag.selectedSidebarEntry})  
-                        
-
-                        
-                        @Html.Action("_KickStarterIFrame","Shared")
-                        
-                    </div>
-                     
+                                                
+                        @Html.Action("_KickStarterIFrame","Shared")                        
+                    </div>                     
                     @RenderSection("desktopMenu", false)
                 </div>
                 <div class="span10 span12-phone">                    

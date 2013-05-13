@@ -120,7 +120,6 @@ footer {
     visibility: hidden;
 }
 
-
 .spoilerText:hover {
     color: #333333;
     background-color: #f3f3f3;
@@ -149,7 +148,6 @@ footer {
 .kickstarterNav {
     padding: 0px;
 }
-
 
 .kickstarterFrame {
     height: 380px;
