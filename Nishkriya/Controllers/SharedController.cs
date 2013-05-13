@@ -29,5 +29,14 @@ namespace Nishkriya.Controllers
             }
             return new EmptyResult();
         }
+
+        public ActionResult _KickStarterIFrame()
+        {
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.KickstarterIframeUrl))
+            {
+                return PartialView("_KickStarterIFrame", Properties.Settings.Default.KickstarterIframeUrl);
+            }
+            return new EmptyResult();
+        }
     }
 }

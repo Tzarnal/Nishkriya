@@ -29,14 +29,9 @@
                         @Html.Action("_SidebarHome","Shared", new {selected = ViewBag.selectedSidebarEntry})   
                         @Html.Action("_SidebarPosters","Shared", new {selected = ViewBag.selectedSidebarEntry})  
                         
-                        <br/>
-                        <ul class="nav nav-list visible-desktop">
-                            <li class="nav-header">Kickstarter</li>                            
-                        </ul>
+
                         
-                        <ul class="nav nav-list kickstarterNav visible-desktop">
-                            <iframe class="kickstarterFrame" frameborder="0" src="http://www.kickstarter.com/projects/200664283/deluxe-exalted-3rd-edition/widget/card.html"></iframe>                                                                    
-                        </ul>
+                        @Html.Action("_KickStarterIFrame","Shared")
                         
                     </div>
                      
