@@ -144,6 +144,7 @@
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\ThreadsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Feeds\FeedBuilder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -175,7 +176,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Results\FeedResult.cs" />
+    <Compile Include="Feeds\FeedResult.cs" />
     <Compile Include="Scraper\Sha1Provider.cs" />
     <Compile Include="Scraper\IHashProvider.cs" />
     <Compile Include="Scraper\ScavengerLord.cs" />

@@ -4,7 +4,7 @@ using System.Text;
 using System.Web.Mvc;
 using System.Xml;
 
-namespace Nishkriya.Results
+namespace Nishkriya.Feeds
 {
     public class FeedResult : ActionResult
     {
