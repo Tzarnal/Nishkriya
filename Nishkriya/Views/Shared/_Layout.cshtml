@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <title>Nishkriya - @ViewBag.Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        @Styles.Render("~/bundles/css")
+        @Styles.Render("~/bundles/styles.css")
         <link rel="alternate" type="application/rss+xml" title="Nishkriya RSS" href="@Url.Action("Feed","Home")"/>
     </head>
     <body>
@@ -48,7 +48,7 @@
             </p>
         </footer>
 
-        @Scripts.Render("~/bundles/scripts")
+        @Scripts.Render("~/bundles/scripts.js")
         @RenderSection("scripts", false)
 
         @Html.Action("Analytics", "Shared")
