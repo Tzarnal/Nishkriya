@@ -10,37 +10,31 @@ using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Nishkriya.Models;
 using Nishkriya.Properties;
+using WebGrease.Css.Extensions;
 
 namespace Nishkriya.Scraper
 {
-    public class ScavengerLord
+    public class YAFScavenger : IForumScraper
     {
         private readonly IHashProvider _hashProvider;
 
-        public ScavengerLord(IHashProvider hashProvider)
+        public YAFScavenger(IHashProvider hashProvider)
         {
             _hashProvider = hashProvider;
         }
 
-        public void Scrape()
+        public void Scrape(NishkriyaContext db)
         {
-            using (var db = new NishkriyaContext())
-            {
-                var session = new ScraperSession { Start = DateTime.Now };
-
-                db.Accounts.Where(a => a.Active).ToList().ForEach(account =>
+            db.Accounts.Where(a => a.Active).ForEach(account =>
                     {
-                        var toAdd = GetNewPosts(account, db.Threads.ToList(), session).ToList();
-                        session.PostsAdded += toAdd.Count;
+                        var toAdd = GetNewPosts(account, db.Threads.ToList()).ToList();
                         account.Posts.AddRange(toAdd);
+                        db.Accounts.Attach(account);
                         db.SaveChanges(); //Pesky thread duplication avoided
                     });
 
-                session.Finish = DateTime.Now;
-
-                db.Stats.Add(session);
                 db.SaveChanges();
-            }
+           
         }
 
         private HtmlDocument CleanHtml(HtmlDocument document)
@@ -79,7 +73,7 @@ namespace Nishkriya.Scraper
             return document;
         }
 
-        private IEnumerable<Post> GetNewPosts(ForumAccount account, List<Thread> threads, ScraperSession session)
+        private IEnumerable<Post> GetNewPosts(ForumAccount account, List<Thread> threads)
         {
             try
             {                                
@@ -146,7 +140,6 @@ namespace Nishkriya.Scraper
                     {
                         thread = new Thread { ThreadId = threadId, Title = threadTitle };
                         threads.Add(thread);
-                        session.ThreadsAdded++;
                     }
 
                     postsCollection.Add(new Post
@@ -162,15 +155,6 @@ namespace Nishkriya.Scraper
             }
             catch (Exception ex)
             {
-                session.HadErrors = true;
-                session.Errors.Add(new Error
-                    {
-                        Message = ex.Message,
-                        Source = ex.Source,
-                        StackTrace = ex.StackTrace,
-                        TargetSite = ex.TargetSite.Name
-                    });
-
                 Debug.WriteLine(ex.Message + "\n----\n" + ex.StackTrace);
                 return new Post[0];
             }

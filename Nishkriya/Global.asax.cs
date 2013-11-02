@@ -30,7 +30,7 @@ namespace Nishkriya
         private void SetupScraper()
         {
             var interval = Settings.Default.ScrapeInterval*60*1000;
-            _scrapeTimer = new Timer(x => new ScavengerLord(new Sha1Provider()).Scrape(), null, 60, interval);
+            _scrapeTimer = new Timer(x => new ScraperManager().Run(), null, 60, interval);
         }
     }
 }
