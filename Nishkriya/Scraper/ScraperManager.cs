@@ -14,8 +14,8 @@ namespace Nishkriya.Scraper
             {
                 var accounts = db.Accounts.Where(a => a.Active).ToList();
                 var hasher = new Sha1Provider();
-                var scrapers = new List<IForumScraper> {new YAFScavenger(hasher), new VBulletinScavenger()};
-                scrapers.ForEach(s => s.Scrape(db));
+                var scrapers = new List<IForumScraper> {new YAFScavenger(hasher, db), new VBulletinScavenger(db)};
+                scrapers.ForEach(s => s.Scrape());
             }
         }
     }

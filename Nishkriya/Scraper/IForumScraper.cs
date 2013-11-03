@@ -5,6 +5,6 @@ namespace Nishkriya.Scraper
 {
     public interface IForumScraper
     {
-        void Scrape(NishkriyaContext db);
+        void Scrape();
     }
 }

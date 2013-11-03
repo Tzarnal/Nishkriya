@@ -17,23 +17,25 @@ namespace Nishkriya.Scraper
     public class YAFScavenger : IForumScraper
     {
         private readonly IHashProvider _hashProvider;
+        private readonly NishkriyaContext _db;
 
-        public YAFScavenger(IHashProvider hashProvider)
+        public YAFScavenger(IHashProvider hashProvider, NishkriyaContext db)
         {
             _hashProvider = hashProvider;
+            _db = db;
         }
 
-        public void Scrape(NishkriyaContext db)
+        public void Scrape()
         {
-            db.Accounts.Where(a => a.Active).ForEach(account =>
+            _db.Accounts.Where(a => a.Active).ForEach(account =>
                     {
-                        var toAdd = GetNewPosts(account, db.Threads.ToList()).ToList();
+                        var toAdd = GetNewPosts(account, _db.Threads.ToList()).ToList();
                         account.Posts.AddRange(toAdd);
-                        db.Accounts.Attach(account);
-                        db.SaveChanges(); //Pesky thread duplication avoided
+                        _db.Accounts.Attach(account);
+                        _db.SaveChanges(); //Pesky thread duplication avoided
                     });
 
-                db.SaveChanges();
+                _db.SaveChanges();
            
         }
 
