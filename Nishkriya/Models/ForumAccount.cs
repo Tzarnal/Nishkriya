@@ -12,6 +12,6 @@ namespace Nishkriya.Models
         public int ForumId { get; set; }
         public string Name { get; set; }
         public bool Active { get; set; }
-        public virtual List<Post> Posts { get; set; }
+        public virtual List<YafPost> Posts { get; set; }
     }
 }

@@ -6,14 +6,14 @@ using System.Globalization;
 
 namespace Nishkriya.Models
 {
-    public class Thread
+    public class YafThread
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int ThreadId { get; set; }
         public string Title { get; set; }
-        public virtual List<Post> Posts { get; set; }
+        public virtual List<YafPost> Posts { get; set; }
 
         [NotMapped]
         public Uri Url

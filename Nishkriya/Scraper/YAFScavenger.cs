@@ -75,7 +75,7 @@ namespace Nishkriya.Scraper
             return document;
         }
 
-        private IEnumerable<Post> GetNewPosts(ForumAccount account, List<Thread> threads)
+        private IEnumerable<YafPost> GetNewPosts(ForumAccount account, List<YafThread> threads)
         {
             try
             {                                
@@ -111,7 +111,7 @@ namespace Nishkriya.Scraper
 
                 document = CleanHtml(document);
 
-                var postsCollection = new List<Post>();
+                var postsCollection = new List<YafPost>();
 
                 const string placeholderFragment = "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab')//table//tr[";
                 const string anchorSelectorFragment = "]//td/a/@href";
@@ -137,14 +137,14 @@ namespace Nishkriya.Scraper
                         document.DocumentNode.SelectSingleNode(
                             "id('MasterPageContentPlaceHolder_forum_ctl01_ProfileTabs_Last10PostsTab_LastPosts_MessagePost_" + i + "')").InnerHtml;
 
-                    Thread thread = threads.SingleOrDefault(s => s.ThreadId == threadId);
+                    YafThread thread = threads.SingleOrDefault(s => s.ThreadId == threadId);
                     if (thread == null)
                     {
-                        thread = new Thread { ThreadId = threadId, Title = threadTitle };
+                        thread = new YafThread { ThreadId = threadId, Title = threadTitle };
                         threads.Add(thread);
                     }
 
-                    postsCollection.Add(new Post
+                    postsCollection.Add(new YafPost
                     {
                         Content = postContent,
                         Hash = _hashProvider.Compute(postContent),
@@ -158,7 +158,7 @@ namespace Nishkriya.Scraper
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message + "\n----\n" + ex.StackTrace);
-                return new Post[0];
+                return new YafPost[0];
             }
         }
     }
