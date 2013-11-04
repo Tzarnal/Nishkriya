@@ -170,6 +170,8 @@
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\ForumAccount.cs" />
     <Compile Include="Models\NishkriyaContext.cs" />
+    <Compile Include="Models\ViewModels\PostsViewModel.cs" />
+    <Compile Include="Models\ViewModels\ThreadViewModel.cs" />
     <Compile Include="Models\YafPost.cs" />
     <Compile Include="Models\ScraperSession.cs" />
     <Compile Include="Models\YafThread.cs" />

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Nishkriya.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using System.Linq;
 
 namespace Nishkriya.Models
 {
@@ -24,6 +26,19 @@ namespace Nishkriya.Models
                     new Uri("http://forums.white-wolf.com/default.aspx?g=posts&t=" +
                             ThreadId.ToString(CultureInfo.InvariantCulture));
             }
+        }
+
+        public ThreadViewModel ToViewModel()
+        {   
+            var thread = new ThreadViewModel
+            {
+                Title = this.Title,
+                Url = this.Url
+            };
+            var posts = Posts.Select(p => p.ToViewModel(thread)).ToList();
+            thread.Posts = posts;
+
+            return thread;
         }
     }
 }
