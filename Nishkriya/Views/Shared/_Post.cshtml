@@ -1,5 +1,5 @@
 ﻿@using System.Web.Mvc.Html
-@model Nishkriya.Models.Post
+@model Nishkriya.Models.ViewModel.PostViewModel
 
 <div class="developer-container">
     <h3><a href="@Url.Action("Details","Threads", new{id = @Model.Thread.ThreadId})">@Html.Raw(Model.Thread.Title)</a></h3>
