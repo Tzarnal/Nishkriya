@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nishkriya.Models
 {
-    public class YafPost
+    public class Post
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,12 +13,12 @@ namespace Nishkriya.Models
         public string Content { get; set; }
         public string Hash { get; set; }
         public virtual ForumAccount ForumAccount { get; set; }
-        public virtual YafThread Thread { get; set; }
+        public virtual Thread Thread { get; set; }
         public DateTime PostDate { get; set; }
         
         public override bool Equals(object obj)
         {
-            return (obj is YafPost) && (obj as YafPost).Hash.Equals(Hash);
+            return (obj is Post) && (obj as Post).Hash.Equals(Hash);
         }
 
         public override int GetHashCode()
@@ -35,6 +35,7 @@ namespace Nishkriya.Models
         {
             return new PostViewModel
             {
+                Id = this.Id,
                 Account = this.ForumAccount,
                 Content = this.Content,
                 PostDate = this.PostDate,

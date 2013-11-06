@@ -65,7 +65,11 @@ namespace Nishkriya.Controllers
                     ContentId = id
                 };
 
-            var selectedPosts = posts.Skip((page - 1)*pageSize).Take(pageSize).OrderByDescending(p => p.PostDate);
+            var selectedPosts = posts.Skip((page - 1) * pageSize)
+                                     .Take(pageSize)
+                                     .ToViewModels()
+                                     .OrderByDescending(p => p.PostDate)
+                                     .ToList();
 
             return View(selectedPosts);
         }

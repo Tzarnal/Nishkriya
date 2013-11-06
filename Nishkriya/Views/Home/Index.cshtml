@@ -36,7 +36,7 @@
     foreach (var post in thread.Posts.OrderBy(p => p.PostDate).Where(p => p.PostDate > Model.SessionTimeSinceLastVisit))
     {
         <div class="developer-container">        
-            <h5>[@Html.ActionLink("#","Details","Posts", new{id = @post.Id}, new{})] @post.ForumAccount.Name - @post.TimeSincePost()</h5>
+            <h5>[@Html.ActionLink("#","Details","Posts", new{id = @post.Id}, new{})] @post.Account.Name - @post.TimeSincePost()</h5>
         
             <div class="developer-quote">
                 @Html.Raw(post.Content)

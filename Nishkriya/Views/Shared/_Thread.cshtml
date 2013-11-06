@@ -1,8 +1,8 @@
 ﻿@model Nishkriya.Models.ViewModels.ThreadViewModel
 
 <tr>
-    <td><a href="@Url.Action("Details","Threads", new{id = @Model.ThreadId})">@Html.Raw(Model.Title)</a></td>
+    <td><a href="@Url.Action("Details","Threads", new{id = @Model.Id})">@Html.Raw(Model.Title)</a></td>
     <td>@Model.Posts.Count() </td>
     <td>@Model.Posts.OrderBy(p => p.PostDate).Last().TimeSincePost()  </td>
-    <td>@Model.Posts.OrderBy(p => p.PostDate).Last().ForumAccount.Name  </td>
+    <td>@Model.Posts.OrderBy(p => p.PostDate).Last().Account.Name  </td>
 </tr>

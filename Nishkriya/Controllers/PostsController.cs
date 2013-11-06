@@ -34,14 +34,22 @@ namespace Nishkriya.Controllers
                     Controller = "Posts"
                 };
 
-            var selectedPosts = posts.Skip((id - 1)*pageSize).Take(pageSize).OrderByDescending(p => p.PostDate);
-            return View("Page",selectedPosts);
+            var selectedPosts = posts.Skip((id - 1) * pageSize)
+                                     .Take(pageSize)
+                                     .ToViewModels()
+                                     .OrderByDescending(p => p.PostDate)
+                                     .ToList();
 
+            return View("Page",selectedPosts);
         }
 
         public ActionResult LatestPosts()
         {
-            var posts = db.Posts.OrderByDescending(p => p.PostDate).Take(10);
+            var posts = db.Posts.OrderByDescending(p => p.PostDate)
+                                .Take(10)
+                                .ToViewModels()
+                                .ToList();
+
             ViewBag.selectedSidebarEntry = "Latest Posts";
             ViewBag.Title = "Latest Posts";
 
@@ -50,11 +58,16 @@ namespace Nishkriya.Controllers
 
         public ActionResult Details(int id)
         {
-            var post = db.Posts.FirstOrDefault(p => p.Id == id);
+            var post = db.Posts.Where(p => p.Id == id);
+
+            if (!post.Any())
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             ViewBag.Title = "Specific Post";
 
-            return View(post);
+            return View(post.ToViewModels().First());
         }
     }
 }

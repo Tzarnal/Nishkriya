@@ -35,14 +35,22 @@ namespace Nishkriya.Controllers
                     Controller = "Threads"
                 };
  
-            var selectedTheads = threads.Skip((id - 1) * pageSize).Take(pageSize).OrderByDescending(thread => thread.Posts.Max(post => post.PostDate));
+            var selectedTheads = threads.Skip((id - 1) * pageSize)
+                                        .Take(pageSize)
+                                        .ToList()
+                                        .OrderByDescending(thread => thread.Posts.Max(post => post.PostDate))
+                                        .Select(t => t.ToViewModel())
+                                        .ToList();
             
             return View("Page", selectedTheads);
         }
 
         public ActionResult LatestTopics()
         {
-            var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate)).Take(10);
+            var threads = db.Threads.OrderByDescending(thread => thread.Posts.Max(post => post.PostDate))
+                            .Take(10)
+                            .ToViewModels(true)
+                            .ToList();
                                              
             ViewBag.Title = "Latest Topics";
             ViewBag.selectedSidebarEntry = "Latest Topics";
@@ -53,9 +61,10 @@ namespace Nishkriya.Controllers
         public ActionResult Details(int id)
         {
             var thread = db.Threads.SingleOrDefault(t => t.ThreadId == id);
+
             ViewBag.Title = thread.Title;
 
-            return View(thread);
+            return View(thread.ToViewModel());
         }
     }
 }

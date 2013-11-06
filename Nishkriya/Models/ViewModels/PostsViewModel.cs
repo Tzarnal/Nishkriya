@@ -7,9 +7,12 @@ namespace Nishkriya.Models.ViewModels
 {
     public class PostViewModel
     {
+        public int Id { get; set; }
         public ForumAccount Account { get; set; }
         public string Content { get; set; }
         public ThreadViewModel Thread { get; set; }
+        public int ThreadId { get; set; }
+        public string Title { get; set; }
         public DateTime PostDate { get; set; }
 
         public override string ToString()

@@ -161,10 +161,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201311031932320_PrepareForMultiForum.cs" />
-    <Compile Include="Migrations\201311031932320_PrepareForMultiForum.Designer.cs">
-      <DependentUpon>201311031932320_PrepareForMultiForum.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Builders\NewContentViewModelBuilder.cs" />
     <Compile Include="Models\Error.cs" />
@@ -172,9 +168,10 @@
     <Compile Include="Models\NishkriyaContext.cs" />
     <Compile Include="Models\ViewModels\PostsViewModel.cs" />
     <Compile Include="Models\ViewModels\ThreadViewModel.cs" />
-    <Compile Include="Models\YafPost.cs" />
+    <Compile Include="Models\ViewModels\ViewModelExtensions.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Models\ScraperSession.cs" />
-    <Compile Include="Models\YafThread.cs" />
+    <Compile Include="Models\Thread.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModels\AuthenticationViewModel.cs" />
     <Compile Include="Models\ViewModels\NewContentViewModel.cs" />
@@ -305,11 +302,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201311031932320_PrepareForMultiForum.resx">
-      <DependentUpon>201311031932320_PrepareForMultiForum.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -8,14 +8,14 @@ using System.Linq;
 
 namespace Nishkriya.Models
 {
-    public class YafThread
+    public class Thread
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int ThreadId { get; set; }
         public string Title { get; set; }
-        public virtual List<YafPost> Posts { get; set; }
+        public virtual List<Post> Posts { get; set; }
 
         [NotMapped]
         public Uri Url
@@ -30,15 +30,20 @@ namespace Nishkriya.Models
 
         public ThreadViewModel ToViewModel()
         {   
-            var thread = new ThreadViewModel
+            return new ThreadViewModel
             {
+                Id = this.Id,
+                ThreadId = this.ThreadId,
                 Title = this.Title,
                 Url = this.Url
             };
-            var posts = Posts.Select(p => p.ToViewModel(thread)).ToList();
-            thread.Posts = posts;
+        }
 
-            return thread;
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Thread)) { return false; }
+            var other = obj as Thread;
+            return this.Id == other.Id && this.ThreadId == other.ThreadId;
         }
     }
 }
