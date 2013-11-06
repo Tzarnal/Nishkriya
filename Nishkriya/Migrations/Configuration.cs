@@ -9,7 +9,7 @@ namespace Nishkriya.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Nishkriya.Models.NishkriyaContext context)
