@@ -39,8 +39,7 @@ namespace Nishkriya.Controllers
                                         .Take(pageSize)
                                         .ToList()
                                         .OrderByDescending(thread => thread.Posts.Max(post => post.PostDate))
-                                        .Select(t => t.ToViewModel())
-                                        .ToList();
+                                        .ToViewModels(true);
             
             return View("Page", selectedTheads);
         }
@@ -60,11 +59,12 @@ namespace Nishkriya.Controllers
 
         public ActionResult Details(int id)
         {
-            var thread = db.Threads.SingleOrDefault(t => t.ThreadId == id);
+            var thread = db.Threads.Where(t => t.Id == id);
+            var viewModel = thread.ToViewModels(true).FirstOrDefault();
 
-            ViewBag.Title = thread.Title;
+            if (viewModel != null) ViewBag.Title = viewModel.Title;
 
-            return View(thread.ToViewModel());
+            return View(viewModel);
         }
     }
 }
