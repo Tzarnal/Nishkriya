@@ -10,8 +10,10 @@ namespace Nishkriya.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int ForumId { get; set; }
+        public string VbName { get; set; }
         public string Name { get; set; }
-        public bool Active { get; set; }
+        public bool YafActive { get; set; }
+        public bool VbActive { get; set; }
         public virtual List<Post> Posts { get; set; }
     }
 }

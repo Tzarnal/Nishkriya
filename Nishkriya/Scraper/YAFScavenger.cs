@@ -27,7 +27,7 @@ namespace Nishkriya.Scraper
 
         public void Scrape()
         {
-            _db.Accounts.Where(a => a.Active).ForEach(account =>
+            _db.Accounts.Where(a => a.YafActive).ForEach(account =>
                     {
                         var toAdd = GetNewPosts(account, _db.Threads.ToList()).ToList();
                         account.Posts.AddRange(toAdd);

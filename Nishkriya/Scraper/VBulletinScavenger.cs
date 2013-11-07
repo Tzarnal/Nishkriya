@@ -19,7 +19,7 @@ namespace Nishkriya.Scraper
 
         public List<ForumAccount> GetAccounts() 
         {
-            return _db.Accounts.Where(a => a.Active).ToList(); ; // add check for new forum Id later
+            return _db.Accounts.Where(a => a.YafActive).ToList(); ; // add check for new forum Id later
         }
 
         private class ProspectivePost

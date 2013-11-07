@@ -161,6 +161,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311072008503_DualForum.cs" />
+    <Compile Include="Migrations\201311072008503_DualForum.Designer.cs">
+      <DependentUpon>201311072008503_DualForum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Builders\NewContentViewModelBuilder.cs" />
     <Compile Include="Models\Error.cs" />
@@ -302,6 +306,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201311072008503_DualForum.resx">
+      <DependentUpon>201311072008503_DualForum.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

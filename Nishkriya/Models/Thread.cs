@@ -13,6 +13,7 @@ namespace Nishkriya.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public int Type { get; set; }
         public int ThreadId { get; set; }
         public string Title { get; set; }
         public virtual List<Post> Posts { get; set; }
@@ -22,9 +23,17 @@ namespace Nishkriya.Models
         {
             get
             {
-                return
-                    new Uri("http://forums.white-wolf.com/default.aspx?g=posts&t=" +
-                            ThreadId.ToString(CultureInfo.InvariantCulture));
+                switch (this.Type)
+                {
+                    case 1:
+                        return
+                            new Uri("http://forums.white-wolf.com/default.aspx?g=posts&t=" +
+                                    ThreadId.ToString(CultureInfo.InvariantCulture));
+                    case 2:
+                              return new Uri("" + ThreadId.ToString(CultureInfo.InvariantCulture));
+                    default:
+                        throw new NotImplementedException("This thread type is not supported");
+                }
             }
         }
 

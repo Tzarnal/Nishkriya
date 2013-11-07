@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Nishkriya.Models.ViewModels
 {
@@ -14,6 +11,7 @@ namespace Nishkriya.Models.ViewModels
         public int ThreadId { get; set; }
         public string Title { get; set; }
         public DateTime PostDate { get; set; }
+        public Uri Url { get; set; }
 
         public override string ToString()
         {

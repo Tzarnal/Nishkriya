@@ -10,6 +10,7 @@ namespace Nishkriya.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public int? PostId { get; set; }
         public string Content { get; set; }
         public string Hash { get; set; }
         public virtual ForumAccount ForumAccount { get; set; }
@@ -39,7 +40,8 @@ namespace Nishkriya.Models
                 Account = this.ForumAccount,
                 Content = this.Content,
                 PostDate = this.PostDate,
-                Thread = thread
+                Thread = thread,
+                Url = this.PostId.HasValue ? new Uri("" + PostId.Value) : thread.Url,
             };
         }
     }
