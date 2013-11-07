@@ -6,7 +6,7 @@ using Nishkriya.Models;
 
 namespace Nishkriya.Scraper
 {
-    public class ScraperManager
+    public class ScavengerLord
     {
         public void Run()
         {

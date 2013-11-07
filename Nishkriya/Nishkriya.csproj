@@ -186,7 +186,7 @@
     </Compile>
     <Compile Include="Feeds\FeedResult.cs" />
     <Compile Include="Scraper\IForumScraper.cs" />
-    <Compile Include="Scraper\ScraperManager.cs" />
+    <Compile Include="Scraper\ScavengerLord.cs" />
     <Compile Include="Scraper\Sha1Provider.cs" />
     <Compile Include="Scraper\IHashProvider.cs" />
     <Compile Include="Scraper\VBulletinScavenger.cs" />
