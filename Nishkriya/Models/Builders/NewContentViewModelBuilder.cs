@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Nishkriya.Models.ViewModels;
+using Nishkriya.Extensions;
 
 namespace Nishkriya.Models.Builders
 {
@@ -17,9 +18,10 @@ namespace Nishkriya.Models.Builders
         {
             var newContent = new NewContentViewModel();
 
-            var threads = _db.Threads.Where(thread => thread.Posts.Max(post => post.PostDate) > sessionTimeSinceLastVisit)
-                                     .ToList()
-                                     .Select(t => t.ToViewModel()).ToList();
+            var threads =
+                _db.Threads.Where(thread => thread.Posts.Max(post => post.PostDate) > sessionTimeSinceLastVisit)
+                   .ToViewModels(true).ToList();
+                                     
             
             newContent.SessionTimeSinceLastVisit = sessionTimeSinceLastVisit;            
             newContent.HideExplanation = hideExplanation;
