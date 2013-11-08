@@ -92,8 +92,7 @@ namespace Nishkriya.Controllers
         public ActionResult Create(ForumAccount forumaccount)
         {
             if (ModelState.IsValid)
-            {
-                forumaccount.YafActive = true;
+            {                
                 db.Accounts.Add(forumaccount);
                 db.SaveChanges();
                 return RedirectToAction("Index");

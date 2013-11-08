@@ -12,16 +12,24 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().ForumId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ForumId)
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().YafActive)
         </th>
         <th>
-            No. Posts
+            @Html.DisplayNameFor(model => model.FirstOrDefault().VbName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().VbActive)
+        </th>
+        <th>
+            Nr. Posts
         </th>
         <th></th>
     </tr>
@@ -29,14 +37,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ForumId)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.ForumId)
+        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.YafActive)
         </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.VbName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.VbActive)
+        </td>
+
         <td>
             @item.Posts.Count
         </td>

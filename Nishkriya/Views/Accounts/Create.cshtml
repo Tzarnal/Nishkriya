@@ -11,6 +11,14 @@
 
     <fieldset>
         <legend>ForumAccount</legend>
+                
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.ForumId)
@@ -19,13 +27,29 @@
             @Html.EditorFor(model => model.ForumId)
             @Html.ValidationMessageFor(model => model.ForumId)
         </div>
-
+                
         <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
+            @Html.LabelFor(model => model.YafActive)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
+            @Html.EditorFor(model => model.YafActive)
+            @Html.ValidationMessageFor(model => model.YafActive)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VbName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VbName)
+            @Html.ValidationMessageFor(model => model.VbName)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VbActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VbActive)
+            @Html.ValidationMessageFor(model => model.VbActive)
         </div>
 
         <p>

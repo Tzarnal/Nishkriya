@@ -15,14 +15,6 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ForumId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ForumId)
-            @Html.ValidationMessageFor(model => model.ForumId)
-        </div>
-
-        <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
         <div class="editor-field">
@@ -31,11 +23,35 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.ForumId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ForumId)
+            @Html.ValidationMessageFor(model => model.ForumId)
+        </div>
+                
+        <div class="editor-label">
             @Html.LabelFor(model => model.YafActive)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.YafActive)
             @Html.ValidationMessageFor(model => model.YafActive)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VbName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VbName)
+            @Html.ValidationMessageFor(model => model.VbName)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VbActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VbActive)
+            @Html.ValidationMessageFor(model => model.VbActive)
         </div>
 
         <p>
