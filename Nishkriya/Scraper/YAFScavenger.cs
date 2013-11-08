@@ -27,6 +27,12 @@ namespace Nishkriya.Scraper
 
         public void Scrape()
         {
+            //Don't scavange if there is not forumaccounts active on YAF
+            if (!_db.Accounts.Any(a => a.YafActive))
+            {
+                return;
+            }
+            
             _db.Accounts.Where(a => a.YafActive).ForEach(account =>
                     {
                         var toAdd = GetNewPosts(account, _db.Threads.ToList()).ToList();
