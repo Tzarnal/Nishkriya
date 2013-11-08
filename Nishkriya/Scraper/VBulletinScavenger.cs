@@ -26,7 +26,7 @@ namespace Nishkriya.Scraper
         {
 
             //Don't scavange if there is not forumaccounts active on vb
-            if (_db.Accounts.Where(a => a.VbActive).Count() == 0)
+            if (!_db.Accounts.Any(a => a.VbActive))
             {
                 return;
             }
