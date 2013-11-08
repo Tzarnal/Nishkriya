@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Nishkriya.Models;
+using Nishkriya.Models.ViewModels;
 
-namespace Nishkriya.Models.ViewModels
+namespace Nishkriya.Extensions
 {
     public static class ViewModelExtensions
     {

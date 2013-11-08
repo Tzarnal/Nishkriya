@@ -1,4 +1,5 @@
-﻿using Nishkriya.Models.ViewModels;
+﻿using Nishkriya.Extensions;
+using Nishkriya.Models.ViewModels;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,6 +32,12 @@ namespace Nishkriya.Models
         {
             return Content;
         }
+
+        public string TimeSincePost()
+        {
+            return PostDate.TimeSince();
+        }
+
 
         public PostViewModel ToViewModel(ThreadViewModel thread)
         {
