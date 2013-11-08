@@ -1,8 +1,11 @@
-﻿using System.Threading;
+﻿using System.Data.Entity;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Nishkriya.Migrations;
+using Nishkriya.Models;
 using Nishkriya.Properties;
 using Nishkriya.Scraper;
 
@@ -17,6 +20,9 @@ namespace Nishkriya
 
         protected void Application_Start()
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<NishkriyaContext, Configuration>());
+
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
