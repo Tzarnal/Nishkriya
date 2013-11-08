@@ -35,6 +35,10 @@ padding: 9px 0;
     background-color: gainsboro;
 }
 
+.innerquote {
+    margin-left: 15px;
+}
+
 .yafsignature {
     display: none;
 }
