@@ -30,19 +30,13 @@
 @foreach (var thread in @Model.Threads)
 {
     <h3><a href="@thread.Url">@Html.Raw(thread.Title)</a></h3>
-    
 
-        
+
+
     foreach (var post in thread.Posts.OrderBy(p => p.PostDate).Where(p => p.PostDate > Model.SessionTimeSinceLastVisit))
     {
-        <div class="developer-container">        
-            <h5>[@Html.ActionLink("#","Details","Posts", new{id = @post.Id}, new{})] @post.Account.Name - @post.TimeSincePost()</h5>
-        
-            <div class="developer-quote">
-                @Html.Raw(post.Content)
-            </div>
-        </div>           
-        }
+        @Html.Partial("_Post", post)
+    }
 }
 
 <p>

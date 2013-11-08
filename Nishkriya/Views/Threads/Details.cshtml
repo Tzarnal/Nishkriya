@@ -4,11 +4,6 @@
 
 @foreach (var post in @Model.Posts.OrderBy(p => p.PostDate) )
 {   
-       <div class="developer-container">        
-        <h5>[@Html.ActionLink("#","Details","Posts", new{id = @post.Id}, new{})]@post.Account.Name - @post.TimeSincePost()</h5>
-        
-        <div class="developer-quote">
-            @Html.Raw(post.Content)
-        </div>
-    </div>
+       @Html.Partial("_Post", post)
+
 }

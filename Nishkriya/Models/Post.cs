@@ -48,7 +48,7 @@ namespace Nishkriya.Models
                 Content = this.Content,
                 PostDate = this.PostDate,
                 Thread = thread,
-                Url = this.PostId.HasValue ? new Uri(thread.Url + "/"+  PostId.Value) : thread.Url,
+                Url = this.PostId.HasValue ? new Uri(thread.Url + "#post"+  PostId.Value) : thread.Url,
             };
         }
     }
