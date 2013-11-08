@@ -30,7 +30,7 @@ namespace Nishkriya.Models
                             new Uri("http://forums.white-wolf.com/default.aspx?g=posts&t=" +
                                     ThreadId.ToString(CultureInfo.InvariantCulture));
                     case 2:
-                              return new Uri("" + ThreadId.ToString(CultureInfo.InvariantCulture));
+                        return new Uri(@"http://forum.theonyxpath.com/forum/main-category/exalted/" + ThreadId.ToString(CultureInfo.InvariantCulture));
                     default:
                         throw new NotImplementedException("This thread type is not supported");
                 }
