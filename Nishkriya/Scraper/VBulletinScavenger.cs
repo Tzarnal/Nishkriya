@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 using HtmlAgilityPack;
 using Nishkriya.Models;
 using System.Collections.Generic;
@@ -138,34 +139,59 @@ namespace Nishkriya.Scraper
 
         private List<Thread> GetActiveThreads()
         {
+            var pageCount = 4; // 60 threads should basically be enough.
             var activeThreads = new List<Thread>();
 
             var authorNames = "[%22" + string.Join("%22%2C%22", _db.Accounts.Where(a => a.VbActive).Select(s => s.VbName).ToList()) + "%22]";
+            var nextPageQuery = @"//a[contains(concat(' ', normalize-space(@class), ' '), ' arrow right-arrow ')]";
 
-            var url = @"http://forum.theonyxpath.com/search?searchJSON={%22author%22%3A" + authorNames + @"%2C%22sort%22%3A{%22relevance%22%3A%22desc%22}%2C%22view%22%3A%22topic%22%2C%22exclude_type%22%3A[%22vBForum_PrivateMessage%22]}";
+            //var url = @"http://forum.theonyxpath.com/search?searchJSON={%22author%22%3A" + authorNames + @"%2C%22sort%22%3A{%22relevance%22%3A%22desc%22}%2C%22view%22%3A%22topic%22%2C%22exclude_type%22%3A[%22vBForum_PrivateMessage%22]}";
+            var url = @"http://forum.theonyxpath.com/search?searchJSON={%22author%22%3A"+ authorNames +"%2C%22channel%22%3A[%2222%22]%2C%22sort%22%3A{%22lastcontent%22%3A%22desc%22}%2C%22view%22%3A%22topic%22%2C%22exclude_type%22%3A[%22vBForum_PrivateMessage%22]}";
+        
             var document = UrlRequest(url);
-
-            var topics = document.DocumentNode.SelectNodes(@"//a[@class='topic-title']");
-            
-            if (topics != null)
+           
+            do
             {
-                foreach (var topic in topics)
+                pageCount--;
+                var topics = document.DocumentNode.SelectNodes(@"//a[@class='topic-title']");
+    
+                if (topics != null)
                 {
-                    var threadUrl = topic.Attributes["href"].Value;
-                    var threadName = topic.InnerText;
+                    foreach (var topic in topics)
+                    {
+                        var threadUrl = topic.Attributes["href"].Value;
+                        var threadName = topic.InnerText;
 
-                    var regexResult = Regex.Match(threadUrl, @"\d+");
-                    var threadId = int.Parse(regexResult.Groups[0].Value);
+                        var regexResult = Regex.Match(threadUrl, @"\d+");
+                        var threadId = int.Parse(regexResult.Groups[0].Value);
 
-                    activeThreads.Add(new Thread
+                        if (!activeThreads.Any(a => a.ThreadId == threadId))
                         {
-                            ThreadId = threadId, 
-                            Title = threadName, 
-                            Posts = new List<Post>(),
-                            Type = 2
-                        });
-                }                
-            }
+                            activeThreads.Add(new Thread
+                            {
+                                ThreadId = threadId,
+                                Title = threadName,
+                                Posts = new List<Post>(),
+                                Type = 2
+                            });    
+                        }                        
+                    }
+                }
+
+                try
+                {
+                    var nextPageHref = document.DocumentNode.SelectSingleNode(nextPageQuery).Attributes["href"];
+                    var nexPageUrl = nextPageHref.Value.Replace("amp;", string.Empty);
+                    document = CleanHtml(UrlRequest(nexPageUrl));
+                }
+                catch (Exception)
+                {
+                    document = null;
+                }
+
+            } while (document != null && pageCount > 0);
+
+
             
             return activeThreads;
         }
