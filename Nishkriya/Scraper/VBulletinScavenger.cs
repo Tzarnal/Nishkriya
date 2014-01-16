@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Data;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web;
 using HtmlAgilityPack;
 using Nishkriya.Models;
 using System.Collections.Generic;
@@ -76,6 +74,11 @@ namespace Nishkriya.Scraper
 
             var url = thread.Url;
             var document = CleanHtml(UrlRequest(url.ToString()));
+
+            if (document == null)
+            {
+                return;
+            }
 
             var postXpathQuery = @"//li[contains(concat(' ', normalize-space(@class), ' '), ' b-post js-post')]";
             var accountQuery = @".//div[contains(concat(' ', normalize-space(@class), ' '), 'author ')]";
@@ -199,6 +202,11 @@ namespace Nishkriya.Scraper
 
         private HtmlDocument CleanHtml(HtmlDocument document)
         {
+            if (document == null)
+            {
+                return null;
+            }
+            
             //Remove Spoiler Buttons
             var spoilersButtons = document.DocumentNode.SelectNodes("//input[@type='button']");
             if (spoilersButtons != null)
@@ -263,12 +271,23 @@ namespace Nishkriya.Scraper
             req.ContentType = "application/x-www-form-urlencoded";
             req.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2";
 
-            var responseStream = req.GetResponse().GetResponseStream();
+            Stream responseStream;
+
+            try
+            {
+                responseStream = req.GetResponse().GetResponseStream();                
+            }
+            catch (WebException)
+            {
+                return null;
+            }
+            
+                        
             var document = new HtmlDocument();
 
             if (responseStream == null)
             {
-                throw new NoNullAllowedException();
+                return null;
             }
 
             using (var reader = new StreamReader(responseStream))
