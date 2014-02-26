@@ -39,7 +39,7 @@ namespace Nishkriya.Scraper
 
             foreach (var thread in prospectiveThreads)
             {
-                var targetThread = _db.Threads.FirstOrDefault(a => a.ThreadId == thread.ThreadId);
+                var targetThread = _db.Threads.FirstOrDefault(a => a.ThreadId == thread.ThreadId && a.Type == 2);
                 if (targetThread != null)
                 {
                     foreach (var post in thread.Posts)
