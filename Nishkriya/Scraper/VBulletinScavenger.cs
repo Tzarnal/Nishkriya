@@ -7,6 +7,7 @@ using HtmlAgilityPack;
 using Nishkriya.Models;
 using System.Collections.Generic;
 using System.Linq;
+using log4net;
 
 namespace Nishkriya.Scraper
 {
@@ -14,11 +15,13 @@ namespace Nishkriya.Scraper
     {
         private readonly NishkriyaContext _db;
         private readonly IHashProvider _hashProvider;
+        private readonly ILog _log;
 
         public VBulletinScavenger(IHashProvider hashProvider, NishkriyaContext db)
         {
             _db = db;
             _hashProvider = hashProvider;
+            _log = LogManager.GetLogger("ScavengerLord");
         }
 
         public void Scrape()
@@ -104,8 +107,9 @@ namespace Nishkriya.Scraper
                     var nextPageHref = document.DocumentNode.SelectSingleNode(nextPageQuery).Attributes["href"];
                     document = CleanHtml(UrlRequest(nextPageHref.Value));                    
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    _log.Error(e.Message, e);
                     document = null;
                 }
 
@@ -187,8 +191,9 @@ namespace Nishkriya.Scraper
                     var nexPageUrl = nextPageHref.Value.Replace("amp;", string.Empty);
                     document = CleanHtml(UrlRequest(nexPageUrl));
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    _log.Error(e.Message, e);
                     document = null;
                 }
 
@@ -277,8 +282,9 @@ namespace Nishkriya.Scraper
             {
                 responseStream = req.GetResponse().GetResponseStream();                
             }
-            catch (WebException)
+            catch (WebException e)
             {
+                _log.Error(url, e);
                 return null;
             }
             
