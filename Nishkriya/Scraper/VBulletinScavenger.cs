@@ -154,8 +154,8 @@ namespace Nishkriya.Scraper
 
             //var url = @"http://forum.theonyxpath.com/search?searchJSON={%22author%22%3A" + authorNames + @"%2C%22sort%22%3A{%22relevance%22%3A%22desc%22}%2C%22view%22%3A%22topic%22%2C%22exclude_type%22%3A[%22vBForum_PrivateMessage%22]}";
             var url = @"http://forum.theonyxpath.com/search?searchJSON={%22author%22%3A"+ authorNames +"%2C%22channel%22%3A[%2222%22]%2C%22sort%22%3A{%22lastcontent%22%3A%22desc%22}%2C%22view%22%3A%22topic%22%2C%22exclude_type%22%3A[%22vBForum_PrivateMessage%22]}";
-        
-            var document = UrlRequest(url);
+
+            var document = UrlRequest(url) ?? new HtmlDocument();
            
             do
             {
